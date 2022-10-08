@@ -117,9 +117,10 @@ function TW_RepairGunImage::onFire(%this,%obj,%slot)
 		{
 			%col = %obj.repairTarget;
 
-			if(vectorDist(%pos, %col.getCenterPos()) > %this.repairRange)
-				%obj.repairTarget = -1;
-			else if(mRadToDeg(mAcos(vectorDot(vectorNormalize(vectorSub(%col.getCenterPos(), %pos)), %obj.getLookVector()))) > %this.repairAngle)
+			if(vectorDist(%pos, %col.getCenterPos()) > %this.repairRange ||
+				 mRadToDeg(mAcos(vectorDot(vectorNormalize(vectorSub(%col.getCenterPos(), %pos)), %obj.getLookVector()))) > %this.repairAngle ||
+				 %col.getDamagePercent() <= 0.0 && !%coldb.isTurretArmor ||
+				 %col.getDamagePercent() >= 1.0 && !%coldb.isTurretArmor)
 				%obj.repairTarget = -1;
 		}
 
@@ -177,7 +178,11 @@ function TW_RepairGunImage::onFire(%this,%obj,%slot)
 			}
 		}
 		else
+		{
 			%targ = %obj.repairTarget;
+			%targdb = %targ.getDataBlock();
+			%dist = vectorDist(%pos, %targ.getCenterPos());
+		}
 
 		if(isObject(%targ))
 		{
