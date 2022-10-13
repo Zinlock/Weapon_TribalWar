@@ -89,8 +89,8 @@ datablock ProjectileData(TW_ThumperProjectile)
 	armingDelay         = 500;
 	lifetime            = 2500;
 	fadeDelay           = 2490;
-	bounceElasticity    = 0.5;
-	bounceFriction       = 0.20;
+	bounceElasticity    = 0.15;
+	bounceFriction       = 0.5;
 	isBallistic         = true;
 	gravityMod = 1.0;
 

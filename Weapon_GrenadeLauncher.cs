@@ -68,7 +68,7 @@ datablock ProjectileData(TW_GrenadeLauncherProjectile)
 	armingDelay         = 750;
 	lifetime            = 3500;
 	fadeDelay           = 3490;
-	bounceElasticity    = 0.25;
+	bounceElasticity    = 0.15;
 	bounceFriction       = 0.5;
 	isBallistic         = true;
 	gravityMod = 1.0;

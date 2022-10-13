@@ -82,8 +82,8 @@ datablock ProjectileData(TW_FusionMortarProjectile)
 	armingDelay         = 1000;
 	lifetime            = 9500;
 	fadeDelay           = 9490;
-	bounceElasticity    = 0.25;
-	bounceFriction       = 0.50;
+	bounceElasticity    = 0.15;
+	bounceFriction       = 0.5;
 	isBallistic         = true;
 	gravityMod = 1.0;
 
