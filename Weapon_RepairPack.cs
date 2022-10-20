@@ -220,7 +220,7 @@ function TW_RepairGunImage::onFire(%this,%obj,%slot)
 			%obj.setEnergyLevel(%obj.getEnergyLevel() - %this.energyUse);
 
 			if(%targdb.isTurretArmor)
-				%targ.turretRepair(%this.repairAmtUtil);
+				%targ.turretRepair(%this.repairAmtUtil, %obj);
 			else
 				%targ.setDamageLevel(%targ.getDamageLevel() - ((%targ.getType() & $TypeMasks::PlayerObjectType) ? %this.repairAmt : %this.repairAmtUtil));
 			
