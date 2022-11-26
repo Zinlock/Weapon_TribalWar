@@ -140,7 +140,7 @@ function TW_RepairGunImage::onFire(%this,%obj,%slot)
 					if(%col == %obj)
 						continue;
 					
-					if(%col.getDamagePercent() <= 0.0 && !%coldb.isTurretArmor)
+					if(%col.getDamagePercent() <= 0.0 && (!%coldb.isTurretArmor || !isObject(%coldb.turretHeadData)))
 						continue;
 					
 					if(isObject(%col.turretBase) && %col.turretBase.getDamagePercent() <= 0.0 || isObject(%col.turretHead) && %col.getDamagePercent() <= 0.0)
