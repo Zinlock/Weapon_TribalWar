@@ -78,6 +78,7 @@ datablock ShapeBaseImageData(TW_ELFGunImage)
 	elfRange = 20;
 	elfAngle = 30;
 	elfDrain = 3.0;
+	elfDamage = 1.0;
 
 	stateName[0]                     	= "Activate";
 	stateTimeoutValue[0]             	= 0.1;
@@ -221,6 +222,7 @@ function TW_ELFGunImage::onFire(%this,%obj,%slot)
 			%trail.setScale(%size SPC %dist SPC %size);
 
 			%targ.setEnergyLevel(%targ.getEnergyLevel() - %this.elfDrain);
+			%targ.damage(%obj, %targ.getCenterPos(), %this.elfDamage, $DamageType::Gun); // todo: change damage type
 			
 			if(isObject(%obj.client))
 			{
