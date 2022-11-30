@@ -113,6 +113,9 @@ function TW_RepairGunImage::onFire(%this,%obj,%slot)
 	{
 		%pos = %obj.getMuzzlePoint(%slot);
 
+		if(isObject(%obj.turretBase))
+			%pos = getWords(%obj.getSlotTransform(0), 0, 2);
+
 		if(isObject(%obj.repairTarget))
 		{
 			%col = %obj.repairTarget;
