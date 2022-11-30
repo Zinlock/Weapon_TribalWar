@@ -73,3 +73,4 @@ exec("./Weapon_FusionMortar.cs");
 exec("./Weapon_HomingHydra.cs");
 exec("./Weapon_MIRVLauncher.cs");
 exec("./Weapon_RepairPack.cs");
+exec("./Weapon_ChargeCannon.cs");
