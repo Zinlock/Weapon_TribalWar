@@ -226,7 +226,6 @@ function TW_ELFGunImage::onFire(%this,%obj,%slot)
 			
 			if(isObject(%obj.client))
 			{
-				%obj.client.centerPrint(%targ.getEnergyLevel(), 2);
 				%obj.blockImageDismount = true;
 				%obj.schedule(400, unBlockImageDismount);
 			}
