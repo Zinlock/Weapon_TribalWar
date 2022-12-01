@@ -24,17 +24,16 @@ datablock ExplosionData(TW_FusionMortarExplosion)
 	explosionShape = "Add-Ons/Weapon_Rocket_Launcher/explosionSphere1.dts";
 	soundProfile = TW_FusionMortarExplodeSound;
 
-	lifeTimeMS = 500;
+	lifeTimeMS = 350;
 
-	particleEmitter = TW_LauncherExplosionEmitter2;
-	particleDensity = 40;
-	particleRadius = 0.5;
+	particleEmitter = TW_MortarExplosionEmitter;
+	particleDensity = 100;
+	particleRadius = 4.0;
 
-	emitter[0] = TW_LauncherFlashEmitter;
-	emitter[1] = TW_LauncherExplosionEmitter;
+	emitter[0] = TW_MortarSmokeEmitter;
 
 	faceViewer     = true;
-	explosionScale = "2 2 2";
+	explosionScale = "1 1 1";
 
 	shakeCamera = true;
 	camShakeFreq = "10.0 11.0 10.0";
@@ -42,15 +41,15 @@ datablock ExplosionData(TW_FusionMortarExplosion)
 	camShakeDuration = 0.5;
 	camShakeRadius = 100.0;
 
-	lightStartRadius = 5;
-	lightEndRadius = 15;
-	lightStartColor = "1 0.5 0 1";
+	lightStartRadius = 4;
+	lightEndRadius = 12;
+	lightStartColor = "0 1 0 1";
 	lightEndColor = "0 0 0 0";
 
-	damageRadius = 11;
-	radiusDamage = 85;
+	damageRadius = 15;
+	radiusDamage = 80;
 
-	impulseRadius = 14;
+	impulseRadius = 17;
 	impulseForce = 1500;
 };
 
@@ -63,7 +62,7 @@ datablock ProjectileData(TW_FusionMortarProjectile)
 	impactImpulse	   = 1;
 	verticalImpulse	   = 1000;
 	explosion           = TW_FusionMortarExplosion;
-	particleEmitter     = TW_LauncherTrailFusionEmitter;
+	particleEmitter     = TW_MortarTrailEmitter;
 
 	brickExplosionRadius = 3;
 	brickExplosionImpact = false;          //destroy a brick if we hit it directly?
@@ -188,7 +187,7 @@ datablock ShapeBaseImageData(TW_FusionMortarImage)
 	projectileDamage = 25;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.0;
-	projectileVelocity = 100;
+	projectileVelocity = 125;
 	projectileTagStrength = 0;
 	projectileTagRecovery = 1.0;
 	projectileInheritance = 0.75;
