@@ -222,7 +222,7 @@ function TW_ELFGunImage::onFire(%this,%obj,%slot)
 			%trail.setScale(%size SPC %dist SPC %size);
 
 			%targ.setEnergyLevel(%targ.getEnergyLevel() - %this.elfDrain);
-			%targ.damage(%obj, %targ.getCenterPos(), %this.elfDamage, $DamageType::Gun); // todo: change damage type
+			%targ.damage(%obj, %targ.getCenterPos(), %this.elfDamage, $DamageType::Direct);
 			
 			if(isObject(%obj.client))
 			{
