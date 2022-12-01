@@ -270,7 +270,7 @@ datablock ParticleData(TW_MortarSmokeParticle)
 
 datablock ParticleEmitterData(TW_MortarSmokeEmitter)
 {
-	ejectionPeriodMS = 2;
+	ejectionPeriodMS = 1;
 	periodVarianceMS = 0;
 	ejectionVelocity = 26;
 	velocityVariance = 12.0;

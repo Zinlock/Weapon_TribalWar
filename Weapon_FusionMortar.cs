@@ -27,7 +27,7 @@ datablock ExplosionData(TW_FusionMortarExplosion)
 	lifeTimeMS = 350;
 
 	particleEmitter = TW_MortarExplosionEmitter;
-	particleDensity = 100;
+	particleDensity = 250;
 	particleRadius = 4.0;
 
 	emitter[0] = TW_MortarSmokeEmitter;
