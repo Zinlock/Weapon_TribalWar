@@ -55,6 +55,7 @@ exec("./Particle_Explosion.cs");
 exec("./Particle_Trail.cs");
 exec("./Item_Ammo.cs");
 exec("./Sound_Reload.cs");
+exec("./Support_ArmingDelayFix.cs");
 exec("./Support_HomingProjectiles.cs");
 
 exec("./Weapon_Thumper.cs");
