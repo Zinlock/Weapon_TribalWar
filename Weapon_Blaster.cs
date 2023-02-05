@@ -185,12 +185,12 @@ datablock ShapeBaseImageData(TW_BlasterImage)
 	stateName[3]				= "Delay";
 	stateTimeoutValue[3]			= 0.2;
 	stateTransitionOnTimeout[3]		= "Ready";
-	
-	stateName[4]				          = "Empty";
-	stateTransitionOnAmmo[4]      = "Ready";
-	stateTransitionOnTimeout[4]		= "Empty";
-	stateTimeoutValue[4]			    = 0.1;
-	stateScript[1]                = "onEmptyLoop";
+
+	stateName[6]				          = "Empty";
+	stateTransitionOnAmmo[6]      = "Ready";
+	stateTransitionOnTimeout[6]		= "Empty";
+	stateTimeoutValue[6]			    = 0.1;
+	stateScript[6]                = "onEmptyLoop";
 };
 
 function TW_BlasterImage::onReadyLoop(%this,%obj,%slot)
