@@ -12,7 +12,7 @@ datablock AudioProfile(TW_SniperRifleBoltSound)
 	preload = true;
 };
 
-datablock StaticShapeData(TW_SniperRifleTrail) { shapeFile = "./dts/sniper_rifle_trail.dts"; };
+datablock StaticShapeData(TW_SniperRifleTrail) { shapeFile = "./dts/bullet_trail.dts"; };
 
 function TW_SniperRifleTrail::onAdd(%this,%obj)
 {
