@@ -36,7 +36,7 @@ datablock ItemData(TW_MachinegunItem)
 	image = TW_MachinegunImage;
 	canDrop = true;
 
-	AEAmmo = 40;
+	AEAmmo = 50;
 	AEType = TW_BulletAmmoItem.getID();
 	AEBase = 1;
 
@@ -84,9 +84,9 @@ datablock ShapeBaseImageData(TW_MachinegunImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 9;
+	projectileDamage = 10;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.15;
+	projectileHeadshotMult = 1.2;
 	projectileVelocity = 200;
 	projectileTagStrength = 0.0;
 	projectileTagRecovery = 1.0;

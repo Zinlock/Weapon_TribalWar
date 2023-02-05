@@ -106,9 +106,9 @@ datablock ShapeBaseImageData(TW_ChaingunImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 4;
+	projectileDamage = 6;
 	projectileCount = 1;
-	projectileHeadshotMult = 1.0;
+	projectileHeadshotMult = 1.2;
 	projectileVelocity = 200;
 	projectileTagStrength = 0.0;
 	projectileTagRecovery = 1.0;
@@ -120,9 +120,9 @@ datablock ShapeBaseImageData(TW_ChaingunImage)
 
 	spreadBurst = 1;
 	spreadReset = 0;
-	spreadBase = 750;
-	spreadMin = 750;
-	spreadMax = 750;
+	spreadBase = 300;
+	spreadMin = 300;
+	spreadMax = 300;
 
 	screenshakeMin = "0.1 0.1 0.1";
 	screenshakeMax = "0.15 0.15 0.15";
@@ -186,7 +186,7 @@ datablock ShapeBaseImageData(TW_ChaingunImage)
 
 	stateName[11]				= "FireLoadCheckA";
 	stateScript[11]				= "AEMagLoadCheck";
-	stateTimeoutValue[11]			= 0.065;
+	stateTimeoutValue[11]			= 0.08;
 	stateTransitionOnTimeout[11]		= "FireLoadCheckB";
 
 	stateName[12]				= "FireLoadCheckB";
