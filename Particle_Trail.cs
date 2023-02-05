@@ -238,6 +238,54 @@ datablock ParticleEmitterData(TW_LauncherTrailSpinEmitter)
 	particles = "TW_LauncherTrailSpinParticle";
 };
 
+datablock ParticleData(TW_LauncherTrailLaserParticle)
+{
+	dragCoefficient		= 3.5;
+	windCoefficient		= 3.5;
+	gravityCoefficient	= 0;
+	inheritedVelFactor	= -0.25;
+	constantAcceleration	= 0.0;
+	lifetimeMS		= 550;
+	lifetimeVarianceMS	= 0;
+	spinSpeed		= 400.0;
+	spinRandomMin		= -400.0;
+	spinRandomMax		= 400.0;
+	useInvAlpha		= false;
+	animateTexture		= false;
+
+	textureName		= "base/data/particles/dot";
+
+	colors[0]     = "1 0.0 0.0 0.1";
+	colors[1]     = "0.9 0.0 0.1 0.3";
+	colors[2]     = "0.1 0.05 0.025 0.1";
+	colors[3]     = "0.05 0.0 0.0 0.0";
+
+	sizes[0]	= 1.2;
+	sizes[1]	= 0.5;
+	sizes[2]	= 0.2;
+	sizes[3]	= 0.0;
+
+	times[0]	= 0.0;
+	times[1]	= 0.1;
+	times[2]	= 0.8;
+	times[3]	= 1.0;
+};
+
+datablock ParticleEmitterData(TW_LauncherTrailLaserEmitter)
+{
+	ejectionPeriodMS = 3;
+	periodVarianceMS = 0;
+	ejectionVelocity = 0;
+	velocityVariance = 0.0;
+	ejectionOffset   = 0.0;
+	thetaMin         = 0;
+	thetaMax         = 5;
+	phiReferenceVel  = 0;
+	phiVariance      = 360;
+	overrideAdvance = false;
+	particles = "TW_LauncherTrailLaserParticle";
+};
+
 datablock ParticleData(TW_FlamerTrailParticle)
 {
 	dragCoefficient		= 5;

@@ -378,3 +378,41 @@ datablock ParticleEmitterData(TW_MortarTrailEmitter)
 	overrideAdvance = false;
 	particles = "TW_MortarTrailParticle";
 };
+
+datablock ParticleData(TW_ImpactRedParticle)
+{
+	dragCoefficient      = 5;
+	gravityCoefficient   = 0;
+	inheritedVelFactor   = 0.2;
+	constantAcceleration = 0.0;
+	lifetimeMS           = 300;
+	lifetimeVarianceMS   = 200;
+	textureName          = "base/data/particles/dot";
+	spinSpeed		= 10.0;
+	spinRandomMin		= -500.0;
+	spinRandomMax		= 500.0;
+
+	colors[0]     = "1 0 0 1";
+	colors[1]     = "0.0 0.0 0.0 0.9";
+
+	sizes[0]      = 1.55;
+	sizes[1]      = 0.0;
+
+	useInvAlpha = false;
+};
+
+datablock ParticleEmitterData(TW_ImpactRedEmitter)
+{
+	ejectionPeriodMS = 1;
+	periodVarianceMS = 0;
+	lifeTimeMS	   = 30;
+	ejectionVelocity = 0.0;
+	velocityVariance = 0.0;
+	ejectionOffset   = 0.0;
+	thetaMin         = 00;
+	thetaMax         = 180;
+	phiReferenceVel  = 0;
+	phiVariance      = 360;
+	overrideAdvance = true;
+	particles = "TW_ImpactRedParticle";
+};
