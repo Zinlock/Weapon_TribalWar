@@ -8,7 +8,7 @@ datablock AudioProfile(TW_JumpGunFireSound)
 datablock AudioProfile(TW_JumpGunImpactSound)
 {
 	filename    = "./wav/JumpGun_hit.wav";
-	description = AudioClose3D;
+	description = AudioDefault3D;
 	preload = true;
 };
 
@@ -95,7 +95,7 @@ datablock ItemData(TW_JumpGunItem)
 	uiName = "TW: Jump Gun";
 	iconName = "./ico/JumpGun";
 	doColorShift = true;
-	colorShiftColor = "0.5 0.5 0.75 1";
+	colorShiftColor = "0.5 0.5 0.5 1";
 
 	image = TW_JumpGunImage;
 	canDrop = true;
