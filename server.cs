@@ -76,3 +76,4 @@ exec("./Weapon_MIRVLauncher.cs");
 exec("./Weapon_RepairPack.cs");
 exec("./Weapon_ChargeCannon.cs");
 exec("./Weapon_Blaster.cs");
+exec("./Weapon_JumpGun.cs");
