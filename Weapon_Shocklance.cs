@@ -58,9 +58,15 @@ datablock ExplosionData(TW_ShocklanceExplosion)
 datablock ProjectileData(TW_ShocklanceProjectile)
 {
 	projectileShapeName = "base/data/shapes/empty.dts";
-	directDamage        = 80;
+
+	vehicleEnergyDamage = 40;
+	energyDamage        = 20;
+	vehicleDirectDamage = 10;
+	directDamage        = 70;
+
 	directDamageType = $DamageType::Direct;
 	radiusDamageType = $DamageType::Radius;
+
 	impactImpulse	   = 700;
 	verticalImpulse	   = 500;
 	explosion           = TW_ShocklanceExplosion;
@@ -92,6 +98,27 @@ datablock ProjectileData(TW_ShocklanceProjectile)
 
 	uiName = "";
 };
+
+function TW_ShocklanceProjectile::damage(%this,%obj,%col,%fade,%pos,%normal)
+{
+  %damageType = %this.DirectDamageType;
+
+	%scale = getWord(%obj.getScale(), 2);
+
+	if(%col.getType() & $TypeMasks::PlayerObjectType)
+	{
+		if(VectorDot(VectorNormalize(%obj.getVelocity()), %col.getForwardVector()) > 0.5)
+			%scale *= 2;
+
+		%col.setEnergyLevel(%col.getEnergyLevel() - %this.energyDamage);
+		%col.damage(%obj, %pos, %this.directDamage * %scale, %damageType);
+	}
+	else
+	{
+		%col.setEnergyLevel(%col.getEnergyLevel() - %this.vehicleEnergyDamage);
+		%col.damage(%obj, %pos, %this.vehicleDirectDamage * %scale, %damageType);
+	}
+}
 
 datablock StaticShapeData(TW_ShocklanceTrail) { shapeFile = "./dts/electric_trail.dts"; };
 
@@ -297,13 +324,10 @@ function TW_ShocklanceImage::onFire(%this,%obj,%slot)
 
 			%dot = VectorDot(%vec, %ray.getForwardVector());
 		
-			if(%dot < 0.5 || %ray.getType() & $TypeMasks::VehicleObjectType)
-				ProjectileFire(%this.projectile, vectorAdd(posFromRaycast(%ray), vectorScale(%vec, -0.05)), %vec, %this.projectileSpread, %this.projectileCount, %slot, %obj, %obj.client, %this.projectileSpeed);
-			else
-			{
+			ProjectileFire(%this.projectile, vectorAdd(posFromRaycast(%ray), vectorScale(%vec, -0.05)), %vec, %this.projectileSpread, %this.projectileCount, %slot, %obj, %obj.client, %this.projectileSpeed);
+
+			if(%dot > 0.5 && !(%ray.getType() & $TypeMasks::VehicleObjectType))
 				%obj.aeplayThread(0, activate);
-				ProjectileFire(%this.projectile, vectorAdd(posFromRaycast(%ray), vectorScale(%vec, -0.05)), %vec, %this.projectileSpread, %this.projectileCount * 2, %slot, %obj, %obj.client, %this.projectileSpeed);
-			}
 
 			%obj.shocklanceHit = true;
 		}
