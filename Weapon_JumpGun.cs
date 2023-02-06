@@ -23,11 +23,11 @@ datablock ExplosionData(TW_JumpGunExplosion)
 	faceViewer     = true;
 	explosionScale = "1 1 1";
 
-	shakeCamera = false;
+	shakeCamera = true;
 	camShakeFreq = "10.0 11.0 10.0";
-	camShakeAmp = "3.0 10.0 3.0";
-	camShakeDuration = 0.5;
-	camShakeRadius = 100.0;
+	camShakeAmp = "1.0 2.0 1.0";
+	camShakeDuration = 1.0;
+	camShakeRadius = 10.0;
 
 	lightStartRadius = 1;
 	lightEndRadius = 4;
@@ -38,7 +38,7 @@ datablock ExplosionData(TW_JumpGunExplosion)
 	radiusDamage = 0.0001;
 
 	impulseRadius = 8;
-	impulseForce = 4000;
+	impulseForce = 3000;
 };
 
 datablock ProjectileData(TW_JumpGunProjectile)
@@ -142,8 +142,8 @@ datablock ShapeBaseImageData(TW_JumpGunImage)
 	doColorShift = true;
 	colorShiftColor = TW_JumpGunItem.colorShiftColor;
 
-	minEnergy = 35.0;
-	energyUse = 20.0;
+	minEnergy = 30.0;
+	energyUse = 15.0;
 
 	stateName[0]                     	= "Activate";
 	stateTimeoutValue[0]             	= 0.1;
