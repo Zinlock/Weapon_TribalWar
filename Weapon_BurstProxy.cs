@@ -48,7 +48,7 @@ datablock ExplosionData(TW_BurstProxyExplosion)
 	lightEndColor = "0 0 0 0";
 
 	damageRadius = 8;
-	radiusDamage = 25;
+	radiusDamage = 30;
  
 	impulseRadius = 10;
 	impulseForce = 600;
@@ -57,7 +57,7 @@ datablock ExplosionData(TW_BurstProxyExplosion)
 datablock ProjectileData(TW_BurstProxyProjectile)
 {
 	projectileShapeName = "./dts/proxy_projectile.dts";
-	directDamage        = 50;
+	directDamage        = 20;
 	directDamageType = $DamageType::AE;
 	radiusDamageType = $DamageType::AE;
 	impactImpulse	   = 1;
@@ -95,6 +95,8 @@ datablock ProjectileData(TW_BurstProxyProjectile)
 	PrjLoop_maxTicks = -1;
 	PrjLoop_tickTime = 45;
 
+	triggerRadius = 4;
+
 	uiName = "";
 };
 
@@ -120,10 +122,11 @@ function TW_BurstProxyProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal
 
 function TW_BurstProxyProjectile::PrjLoop_onTick(%this, %obj)
 {
-	initContainerRadiusSearch(%obj.getPosition(), %this.explosion.damageRadius / 2, $TypeMasks::PlayerObjectType); // | $TypeMasks::VehicleObjectType);
+	initContainerRadiusSearch(%obj.getPosition(), %this.triggerRadius, $TypeMasks::PlayerObjectType | $TypeMasks::VehicleObjectType);
 	while(isObject(%col = containerSearchNext()))
 	{
-		if(%col.getDamagePercent() < 1.0 && minigameCanDamage(%obj, %col) == 1 && !minigameIsFriendly(%obj, %col))
+		if(%col.getDamagePercent() < 1.0 && minigameCanDamage(%obj, %col) == 1 && !minigameIsFriendly(%obj, %col) && %col != %obj.sourceObject &&
+		   vectorDot(vectorNormalize(%obj.getVelocity()), vectorNormalize(vectorSub(%obj.getPosition(), %col.getPosition()))) > 0)
 		{
 			%obj.explode();
 			return;
@@ -172,8 +175,8 @@ datablock ItemData(TW_BurstProxyItem)
 	image = TW_BurstProxyImage;
 	canDrop = true;
 	
-	AEAmmo = 6;
-	AEType = TW_GrenadeAmmoItem.getID(); 
+	AEAmmo = 3;
+	AEType = TW_RocketAmmoItem.getID(); 
 	AEBase = 1;
 
   RPM = 60;
@@ -276,7 +279,7 @@ datablock ShapeBaseImageData(TW_BurstProxyImage)
 	
 	stateName[4]				= "FireLoadCheckA";
 	stateScript[4]				= "AEMagLoadCheck";
-	stateTimeoutValue[4]			= 0.135;
+	stateTimeoutValue[4]			= 0.175;
 	stateTransitionOnTimeout[4]		= "FireLoadCheckB";
 	
 	stateName[5]				= "FireLoadCheckB";
@@ -360,7 +363,7 @@ datablock ShapeBaseImageData(TW_BurstProxyImage)
 	stateName[23]				= "Reload";
 	stateTransitionOnTimeout[23]     	= "Reloaded";
 	stateWaitForTimeout[23]			= false;
-	stateTimeoutValue[23]			= 0.35;
+	stateTimeoutValue[23]			= 0.45;
 	stateSequence[23]			= "Reload";
 	stateScript[23]				= "LoadEffect";
 	
