@@ -416,3 +416,45 @@ datablock ParticleEmitterData(TW_ImpactRedEmitter)
 	overrideAdvance = true;
 	particles = "TW_ImpactRedParticle";
 };
+
+datablock ParticleData(TW_ImpactShockParticle)
+{
+	dragCoefficient      = 3;
+	gravityCoefficient   = 0;
+	inheritedVelFactor   = 0.0;
+	constantAcceleration = 0.0;
+	lifetimeMS           = 200;
+	lifetimeVarianceMS   = 50;
+	textureName          = "./dts/bolt";
+	spinSpeed		= 0.0;
+	spinRandomMin		= 0.0;
+	spinRandomMax		= 0.0;
+
+	colors[0]     = "0 0.5 1.0 1";
+	colors[1]     = "0.0 0.0 0.0 0.9";
+
+	sizes[0]      = 1.5;
+	sizes[1]      = 0.0;
+
+	useInvAlpha = false;
+};
+
+datablock ParticleEmitterData(TW_ImpactShockEmitter)
+{
+	ejectionPeriodMS = 1;
+	periodVarianceMS = 0;
+	lifeTimeMS	   = 30;
+	ejectionVelocity = 9.0;
+	velocityVariance = 2.0;
+	ejectionOffset   = 0.0;
+	thetaMin         = 0;
+	thetaMax         = 30;
+	phiReferenceVel  = 0;
+	phiVariance      = 360;
+	overrideAdvance = true;
+
+	orientParticles = true;
+	orientOnVelocity = true;
+
+	particles = "TW_ImpactShockParticle";
+};
