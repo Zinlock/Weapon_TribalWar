@@ -125,10 +125,10 @@ datablock ShapeBaseImageData(TW_DoubleShotgunImage)
 	screenshakeMin = "0.3 0.3 0.3"; 
 	screenshakeMax = "1 1 1";
 
-	projectileDamage = 3;
+	projectileDamage = 5;
 	projectileCount = 16;
 	projectileHeadshotMult = 1.0;
-	projectileVelocity = 100;
+	projectileVelocity = 200;
 	projectileTagStrength = 0;
 	projectileTagRecovery = 1.0;
 	projectileInheritance = 0.0;
@@ -141,7 +141,7 @@ datablock ShapeBaseImageData(TW_DoubleShotgunImage)
 	projectileFalloffDamage = 1;
 
 	concBlastProj = ShotgunBlastProjectile;
-	concBlastDamage = 45;
+	concBlastDamage = 20;
 	concBlastScale = 1;
 
 	recoilHeight = 0;
@@ -161,6 +161,11 @@ datablock ShapeBaseImageData(TW_DoubleShotgunImage)
 	whizzDistance = 12;
 	whizzChance = 20;
 	whizzAngle = 80;
+
+	staticRealHitscan = true;
+	staticTotalRange = 28;
+	staticSpawnFakeProjectiles = 0.5;
+	staticTracerEffect = TW_SniperRifleTrail;
 	
 	stateName[0]                     	= "Activate";
 	stateTimeoutValue[0]             	= 0.01;
