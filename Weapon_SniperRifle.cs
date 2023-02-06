@@ -1,6 +1,6 @@
 datablock AudioProfile(TW_SniperRifleFireSound)
 {
-	filename    = "./wav/Sniper_Rifle_fire.wav";
+	filename    = "./wav/Sniper_Rifle_fire2.wav";
 	description = HeavyClose3D;
 	preload = true;
 };
