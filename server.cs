@@ -1,6 +1,5 @@
 %errorA = ForceRequiredAddOn("Weapon_AEBase");
 %errorB = ForceRequiredAddOn("Weapon_Grenades");
-%errorC = ForceRequiredAddOn("Sound_Blockland");
 
 if(%errorA == $Error::AddOn_NotFound)
 {
@@ -11,12 +10,6 @@ if(%errorA == $Error::AddOn_NotFound)
 if(%errorB == $Error::AddOn_NotFound)
 {
 	error("Weapon_TribalWar Error: required add-on Weapon_Grenades not found");
-	return;
-}
-
-if(%errorC == $Error::AddOn_NotFound)
-{
-	error("Weapon_TribalWar Error: required add-on Sound_Blockland not found");
 	return;
 }
 
@@ -54,6 +47,7 @@ function ProjectileData::Damage (%this, %obj, %col, %fade, %pos, %normal) // Thi
 exec("./Particle_Explosion.cs");
 exec("./Particle_Trail.cs");
 exec("./Item_Ammo.cs");
+exec("./Sound_Blockland.cs");
 exec("./Sound_Reload.cs");
 exec("./Support_ArmingDelayFix.cs");
 exec("./Support_HomingProjectiles.cs");
