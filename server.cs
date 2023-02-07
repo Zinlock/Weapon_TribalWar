@@ -72,3 +72,4 @@ exec("./Weapon_ChargeCannon.cs");
 exec("./Weapon_Blaster.cs");
 exec("./Weapon_JumpGun.cs");
 exec("./Weapon_Shocklance.cs");
+exec("./Weapon_PhaseRifle.cs");
