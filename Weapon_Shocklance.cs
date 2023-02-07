@@ -120,14 +120,6 @@ function TW_ShocklanceProjectile::damage(%this,%obj,%col,%fade,%pos,%normal)
 	}
 }
 
-datablock StaticShapeData(TW_ShocklanceTrail) { shapeFile = "./dts/electric_trail.dts"; };
-
-function TW_ShocklanceTrail::onAdd(%this,%obj)
-{
-  %obj.schedule(0, playThread, 2, root);
-  %obj.schedule(2000,delete);
-}
-
 datablock ItemData(TW_ShocklanceItem)
 {
 	category = "Weapon";
@@ -310,7 +302,7 @@ function TW_ShocklanceImage::onFire(%this,%obj,%slot)
 
 			%shape = new StaticShape()
 			{
-				datablock = TW_ShocklanceTrail;
+				datablock = TW_ElectricTrail;
 			};
 			MissionCleanup.add(%shape);
 

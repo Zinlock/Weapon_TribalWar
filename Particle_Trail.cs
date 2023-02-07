@@ -1,3 +1,35 @@
+datablock StaticShapeData(TW_BulletTrail) { shapeFile = "./dts/bullet_trail.dts"; };
+
+function TW_BulletTrail::onAdd(%this,%obj)
+{
+  %obj.schedule(0, playThread, 2, root);
+  %obj.schedule(2000,delete);
+}
+
+datablock StaticShapeData(TW_ElectricTrail) { shapeFile = "./dts/electric_trail.dts"; };
+
+function TW_ElectricTrail::onAdd(%this,%obj)
+{
+  %obj.schedule(0, playThread, 2, root);
+  %obj.schedule(2000,delete);
+}
+
+datablock StaticShapeData(TW_PlasmaTrail) { shapeFile = "./dts/plasma_trail.dts"; };
+
+function TW_PlasmaTrail::onAdd(%this,%obj)
+{
+  %obj.schedule(0, playThread, 2, root);
+  %obj.schedule(2000,delete);
+}
+
+datablock StaticShapeData(TW_LaserTrail) { shapeFile = "./dts/laser_trail.dts"; };
+
+function TW_LaserTrail::onAdd(%this,%obj)
+{
+  %obj.schedule(0, playThread, 2, root);
+  %obj.schedule(2000,delete);
+}
+
 datablock ParticleData(TW_LauncherTrailParticle)
 {
 	dragCoefficient		= 3.5;

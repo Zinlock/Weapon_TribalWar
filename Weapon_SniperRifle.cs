@@ -12,14 +12,6 @@ datablock AudioProfile(TW_SniperRifleBoltSound)
 	preload = true;
 };
 
-datablock StaticShapeData(TW_SniperRifleTrail) { shapeFile = "./dts/bullet_trail.dts"; };
-
-function TW_SniperRifleTrail::onAdd(%this,%obj)
-{
-  %obj.schedule(0, playThread, 2, root);
-  %obj.schedule(2000,delete);
-}
-
 datablock ItemData(TW_SniperRifleItem)
 {
 	category = "Weapon";
@@ -134,7 +126,7 @@ datablock ShapeBaseImageData(TW_SniperRifleImage)
 	staticRealHitscan = true;
 	staticTotalRange = 2000;
 	staticSpawnFakeProjectiles = true;
-	staticTracerEffect = TW_SniperRifleTrail;
+	staticTracerEffect = TW_BulletTrail;
 	
 	stateName[0]                     	= "Activate";
 	stateTimeoutValue[0]             	= 0.01;
@@ -256,17 +248,7 @@ function TW_SniperRifleImage::AEOnFire(%this,%obj,%slot)
 	%obj.blockImageDismount = true;
 	%obj.schedule(600, unBlockImageDismount);
 
-	// %energy = %obj.getEnergyLevel() / 100;
-	// %obj.setEnergyLevel(0);
-	
-	// %old = %this.projectileFalloffDamage;
-	// %mult = mFloatLerp(%old, 1, %energy);
-
-	// %this.projectileFalloffDamage = %mult;
-
 	Parent::AEOnFire(%this, %obj, %slot);
-
-	// %this.projectileFalloffDamage = %old;
 }
 
 function TW_SniperRifleImage::onDryFire(%this, %obj, %slot)

@@ -165,7 +165,7 @@ datablock ShapeBaseImageData(TW_DoubleShotgunImage)
 	staticRealHitscan = true;
 	staticTotalRange = 28;
 	staticSpawnFakeProjectiles = 0.5;
-	staticTracerEffect = TW_SniperRifleTrail;
+	staticTracerEffect = TW_BulletTrail;
 	
 	stateName[0]                     	= "Activate";
 	stateTimeoutValue[0]             	= 0.01;
