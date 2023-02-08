@@ -33,7 +33,7 @@ datablock ItemData(TW_PhaseRifleItem)
 	image = TW_PhaseRifleImage;
 	canDrop = true;
 
-	AEAmmo = 2;
+	AEAmmo = 3;
 	AEType = TW_BoltAmmoItem.getID();
 	AEBase = 1;
 
@@ -86,8 +86,8 @@ datablock ShapeBaseImageData(TW_PhaseRifleImage)
 	screenshakeMin = "0.1 0.1 0.1"; 
 	screenshakeMax = "0.2 0.2 0.2";
 
-	projectileBaseDamage = 25;
-	projectileEnergyAdd = 35;
+	projectileBaseDamage = 20;
+	projectileEnergyAdd = 40;
 
 	projectileDamage = 25;
 	projectileCount = 1;
@@ -140,7 +140,7 @@ datablock ShapeBaseImageData(TW_PhaseRifleImage)
 
 	stateName[3]                    = "Fire";
 	stateTransitionOnTimeout[3]     = "SemiAutoCheck";
-	stateTimeoutValue[3]             	= 0.75;
+	stateTimeoutValue[3]             	= 0.6;
 	stateEmitter[3]					= AEBaseRifleFlashEmitter;
 	stateEmitterTime[3]				= 0.05;
 	stateEmitterNode[3]				= "muzzlePoint";
@@ -174,7 +174,7 @@ datablock ShapeBaseImageData(TW_PhaseRifleImage)
 	stateSound[8]				= TW_GenericReload2Sound;
 
 	stateName[9]				= "ReloadMagIn";
-	stateTimeoutValue[9]			= 0.6;
+	stateTimeoutValue[9]			= 0.4;
 	stateScript[9]				= "onReloadMagIn";
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
