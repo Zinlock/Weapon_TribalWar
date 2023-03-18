@@ -83,7 +83,7 @@ datablock ExplosionData(TW_HeatSeekerExplosion)
 	lightEndColor = "0 0 0 0";
 
 	damageRadius = 10;
-	radiusDamage = 50;
+	radiusDamage = 30;
 
 	impulseRadius = 14;
 	impulseForce = 1500;
@@ -129,15 +129,16 @@ datablock ProjectileData(TW_HeatSeekerProjectile)
 	uiName = "";
 
 	homingProjectile = true;
-	homingAccuracy = 30;
-	homingAccuracyClose = 85;
-	homingCloseDist = 8;
-	homingFarDist = 32;
+	homingAccuracy = 80;
+	homingAccuracyClose = 200;
+	homingCloseDist = 4;
+	homingFarDist = 64;
 	homingRadius = 0;
 	homingEscapeDistance = -1;
 	homingLockOnLimit = 0;
 	homingCanRetry = true;
 	homingAutomatic = false;
+	homingTickTime = 200;
 };
 
 function TW_HeatSeekerProjectile::onAdd(%db, %proj)

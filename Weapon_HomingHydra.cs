@@ -1,66 +1,3 @@
-datablock AudioProfile(TW_MIRVLauncherFireSound)
-{
-   filename    = "./wav/MIRV_Launcher_fire.wav";
-   description = HeavyClose3D;
-   preload = true;
-};
-
-datablock AudioProfile(TW_MIRVLauncherSplitSound)
-{
-   filename    = "./wav/MIRV_Launcher_split.wav";
-   description = HeavyClose3D;
-   preload = true;
-};
-
-datablock AudioProfile(TW_MIRVLauncherExplodeSound)
-{
-   filename    = "./wav/mirv_launcher_explode.wav";
-   description = ExplosionFar3D;
-   preload = true;
-};
-
-datablock AudioProfile(TW_MIRVLauncherFlySound)
-{
-   filename    = "./wav/mirv_launcher_fly.wav";
-   description = AudioDefaultLooping3D;
-   preload = true;
-};
-
-datablock ExplosionData(TW_MIRVClusterletExplosion)
-{
-	explosionShape = "Add-Ons/Weapon_Rocket_Launcher/explosionSphere1.dts";
-	soundProfile = TW_MIRVLauncherExplodeSound;
-
-	lifeTimeMS = 350;
-
-	particleEmitter = TW_LauncherExplosionEmitter2;
-	particleDensity = 40;
-	particleRadius = 0.5;
-
-	emitter[0] = TW_LauncherFlashEmitter;
-	emitter[1] = TW_LauncherExplosionEmitter;
-
-	faceViewer     = true;
-	explosionScale = "2 2 2";
-
-	shakeCamera = true;
-	camShakeFreq = "10.0 11.0 10.0";
-	camShakeAmp = "3.0 10.0 3.0";
-	camShakeDuration = 0.5;
-	camShakeRadius = 100.0;
-
-	lightStartRadius = 5;
-	lightEndRadius = 15;
-	lightStartColor = "1 0.5 0 1";
-	lightEndColor = "0 0 0 0";
-
-	damageRadius = 10;
-	radiusDamage = 25;
-
-	impulseRadius = 10;
-	impulseForce = 1500;
-};
-
 datablock ProjectileData(TW_MIRVClusterletProjectile)
 {
 	projectileShapeName = "./dts/MIRV_Launcher_projectile.dts";
@@ -118,41 +55,6 @@ function TW_MIRVClusterletProjectile::onHomeTick(%db, %proj)
 	if(isObject(%col))
 		HeatLockOnPrint(-1, %col, 0, 1);
 }
-
-datablock ExplosionData(TW_MIRVLauncherExplosion)
-{
-	explosionShape = "Add-Ons/Weapon_Rocket_Launcher/explosionSphere1.dts";
-	soundProfile = TW_MIRVLauncherSplitSound;
-
-	lifeTimeMS = 350;
-
-	particleEmitter = TW_LauncherExplosionEmitter2;
-	particleDensity = 40;
-	particleRadius = 0.5;
-
-	emitter[0] = TW_LauncherFlashEmitter;
-	emitter[1] = TW_LauncherExplosionEmitter;
-
-	faceViewer     = true;
-	explosionScale = "2 2 2";
-
-	shakeCamera = true;
-	camShakeFreq = "10.0 11.0 10.0";
-	camShakeAmp = "3.0 10.0 3.0";
-	camShakeDuration = 0.5;
-	camShakeRadius = 100.0;
-
-	lightStartRadius = 5;
-	lightEndRadius = 15;
-	lightStartColor = "1 0.5 0 1";
-	lightEndColor = "0 0 0 0";
-
-	damageRadius = 10;
-	radiusDamage = 35;
-
-	impulseRadius = 14;
-	impulseForce = 1500;
-};
 
 datablock ProjectileData(TW_MIRVLauncherProjectile)
 {

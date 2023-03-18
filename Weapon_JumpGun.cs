@@ -38,7 +38,7 @@ datablock ExplosionData(TW_JumpGunExplosion)
 	radiusDamage = 0.0001;
 
 	impulseRadius = 8;
-	impulseForce = 3000;
+	impulseForce = 5000;
 };
 
 datablock ProjectileData(TW_JumpGunProjectile)

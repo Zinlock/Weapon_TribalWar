@@ -46,10 +46,10 @@ datablock ExplosionData(TW_FusionMortarExplosion)
 	lightStartColor = "0 1 0 1";
 	lightEndColor = "0 0 0 0";
 
-	damageRadius = 15;
-	radiusDamage = 80;
+	damageRadius = 17;
+	radiusDamage = 90;
 
-	impulseRadius = 17;
+	impulseRadius = 19;
 	impulseForce = 1500;
 };
 
@@ -59,10 +59,10 @@ datablock ProjectileData(TW_FusionMortarProjectile)
 	directDamage        = 50;
 	directDamageType = $DamageType::AE;
 	radiusDamageType = $DamageType::AE;
-	impactImpulse	   = 1;
+	impactImpulse	   = 50;
 	verticalImpulse	   = 1000;
 	explosion           = TW_FusionMortarExplosion;
-	particleEmitter     = TW_MortarTrailEmitter;
+	particleEmitter     = TW_LauncherTrailFusionEmitter;
 
 	brickExplosionRadius = 3;
 	brickExplosionImpact = false;          //destroy a brick if we hit it directly?
@@ -71,7 +71,7 @@ datablock ProjectileData(TW_FusionMortarProjectile)
 	brickExplosionMaxVolumeFloating = 60;  //max volume of bricks that we can destroy if they aren't connected to the ground (should always be >= brickExplosionMaxVolume)
 
 	explodeOnDeath = true;
-	explodeOnPlayerImpact = true;
+	explodeOnPlayerImpact = false;
 
 	sound = TW_FusionMortarFlySound;
 
@@ -79,10 +79,10 @@ datablock ProjectileData(TW_FusionMortarProjectile)
 	velInheritFactor    = 0;
 
 	armingDelay         = 1000;
-	lifetime            = 9500;
-	fadeDelay           = 9490;
-	bounceElasticity    = 0.15;
-	bounceFriction       = 0.5;
+	lifetime            = 30000;
+	fadeDelay           = 29990;
+	bounceElasticity    = 0.1;
+	bounceFriction       = 0.75;
 	isBallistic         = true;
 	gravityMod = 1.0;
 
@@ -184,7 +184,7 @@ datablock ShapeBaseImageData(TW_FusionMortarImage)
 	screenshakeMin = "0.3 0.3 0.3"; 
 	screenshakeMax = "1 1 1";
 
-	projectileDamage = 25;
+	projectileDamage = 0;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.0;
 	projectileVelocity = 125;

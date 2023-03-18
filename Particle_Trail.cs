@@ -178,11 +178,11 @@ datablock ParticleData(TW_LauncherTrailFusionParticle)
 {
 	dragCoefficient		= 3.5;
 	windCoefficient		= 3.5;
-	gravityCoefficient	= 0;
-	inheritedVelFactor	= -0.25;
+	gravityCoefficient	= -0.25;
+	inheritedVelFactor	= 0.2;
 	constantAcceleration	= 0.0;
-	lifetimeMS		= 2500;
-	lifetimeVarianceMS	= 400;
+	lifetimeMS		= 2000;
+	lifetimeVarianceMS	= 0;
 	spinSpeed		= 400.0;
 	spinRandomMin		= -400.0;
 	spinRandomMax		= 400.0;
@@ -191,15 +191,15 @@ datablock ParticleData(TW_LauncherTrailFusionParticle)
 
 	textureName		= "base/data/particles/cloud";
 
-	colors[0]     = "0 1 0 0.0";
-	colors[1]     = "0.1 0.3 0.0 0.13";
-	colors[2]     = "0.0 0.025 0.0 0.075";
-	colors[3]     = "0.0 0.0 0.0 0.1";
+	colors[0]     = "0.3 0.5 0.3 0.2";
+	colors[1]     = "0.2 0.7 0.3 0.5";
+	colors[2]     = "0.2 0.1 0.1 0.2";
+	colors[3]     = "0.0 0.1 0.0 0.0";
 
-	sizes[0]	= 2.2;
+	sizes[0]	= 0.5;
 	sizes[1]	= 1.2;
-	sizes[2]	= 1.0;
-	sizes[3]	= 0.8;
+	sizes[2]	= 2.5;
+	sizes[3]	= 2.0;
 
 	times[0]	= 0.0;
 	times[1]	= 0.1;
@@ -209,8 +209,8 @@ datablock ParticleData(TW_LauncherTrailFusionParticle)
 
 datablock ParticleEmitterData(TW_LauncherTrailFusionEmitter)
 {
-	ejectionPeriodMS = 4;
-	periodVarianceMS = 0;
+	ejectionPeriodMS = 30;
+	periodVarianceMS = 10;
 	ejectionVelocity = 0;
 	velocityVariance = 0.0;
 	ejectionOffset   = 0.0;
@@ -220,6 +220,19 @@ datablock ParticleEmitterData(TW_LauncherTrailFusionEmitter)
 	phiVariance      = 360;
 	overrideAdvance = false;
 	particles = "TW_LauncherTrailFusionParticle";
+};
+
+datablock ParticleData(TW_LauncherTrailFusionBlueParticle : TW_LauncherTrailFusionParticle)
+{
+	colors[0]     = "0.1 0.9 1.0 0.2";
+	colors[1]     = "0.1 0.6 0.9 0.5";
+	colors[2]     = "0.1 0.1 0.2 0.2";
+	colors[3]     = "0.0 0.1 0.0 0.0";
+};
+
+datablock ParticleEmitterData(TW_LauncherTrailFusionBlueEmitter : TW_LauncherTrailFusionEmitter)
+{
+	particles = "TW_LauncherTrailFusionBlueParticle";
 };
 
 datablock ParticleData(TW_LauncherTrailSpinParticle)

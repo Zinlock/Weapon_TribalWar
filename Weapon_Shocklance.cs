@@ -186,7 +186,7 @@ datablock ShapeBaseImageData(TW_ShocklanceImage)
 	minEnergy = 20.0;
 	energyUse = 20.0;
 
-	shockRange = 16;
+	shockRange = 24;
 	shockDelayMiss = 2.0;
 	shockDelayHit = 1.5;
 

@@ -39,8 +39,8 @@ datablock ParticleEmitterData(TW_LauncherExplosionEmitter)
 	ejectionPeriodMS = 1;
 	periodVarianceMS = 0;
 	lifeTimeMS	   = 21;
-	ejectionVelocity = 8;
-	velocityVariance = 3.0;
+	ejectionVelocity = 16;
+	velocityVariance = 10.0;
 	ejectionOffset   = 2.0;
 	thetaMin         = 00;
 	thetaMax         = 180;
@@ -91,8 +91,8 @@ datablock ParticleEmitterData(TW_LauncherExplosionBlueEmitter)
 	ejectionPeriodMS = 1;
 	periodVarianceMS = 0;
 	lifeTimeMS	   = 21;
-	ejectionVelocity = 8;
-	velocityVariance = 3.0;
+	ejectionVelocity = 16;
+	velocityVariance = 10.0;
 	ejectionOffset   = 2.0;
 	thetaMin         = 00;
 	thetaMax         = 180;
@@ -140,8 +140,8 @@ datablock ParticleEmitterData(TW_LauncherExplosionPlasmaEmitter)
 	ejectionPeriodMS = 1;
 	periodVarianceMS = 0;
 	lifeTimeMS	   = 21;
-	ejectionVelocity = 8;
-	velocityVariance = 3.0;
+	ejectionVelocity = 16;
+	velocityVariance = 10.0;
 	ejectionOffset   = 0.35;
 	thetaMin         = 00;
 	thetaMax         = 90;
@@ -221,18 +221,18 @@ datablock ParticleData(TW_LauncherExplosionParticle2)
 
 datablock ParticleEmitterData(TW_LauncherExplosionEmitter2)
 {
-   ejectionPeriodMS = 1;
-   periodVarianceMS = 0;
-   lifeTimeMS	   = 21;
-   ejectionVelocity = 12;
-   velocityVariance = 2.0;
-   ejectionOffset   = 1.0;
-   thetaMin         = 0;
-   thetaMax         = 180;
-   phiReferenceVel  = 30;
-   phiVariance      = 32;
-   overrideAdvance = false;
-   particles = "TW_LauncherExplosionParticle2";
+	ejectionPeriodMS = 2;
+	periodVarianceMS = 0;
+	lifeTimeMS	   = 21;
+	ejectionVelocity = 20;
+	velocityVariance = 9.0;
+	ejectionOffset   = 0.5;
+	thetaMin         = 0;
+	thetaMax         = 180;
+	phiReferenceVel  = 30;
+	phiVariance      = 32;
+	overrideAdvance = false;
+	particles = "TW_LauncherExplosionParticle2";
 };
 
 datablock ParticleData(TW_MortarSmokeParticle)
@@ -329,54 +329,6 @@ datablock ParticleEmitterData(TW_MortarExplosionEmitter)
 	phiVariance      = 360;
 	overrideAdvance = false;
 	particles = "TW_MortarExplosionParticle";
-};
-
-datablock ParticleData(TW_MortarTrailParticle)
-{
-	dragCoefficient		= 3.5;
-	windCoefficient		= 3.5;
-	gravityCoefficient	= -0.25;
-	inheritedVelFactor	= 0.2;
-	constantAcceleration	= 0.0;
-	lifetimeMS		= 2000;
-	lifetimeVarianceMS	= 0;
-	spinSpeed		= 400.0;
-	spinRandomMin		= -400.0;
-	spinRandomMax		= 400.0;
-	useInvAlpha		= true;
-	animateTexture		= false;
-
-	textureName		= "base/data/particles/cloud";
-
-	colors[0]     = "0.3 0.5 0.3 0.5";
-	colors[1]     = "0.2 0.7 0.3 0.7";
-	colors[2]     = "0.2 0.1 0.1 0.4";
-	colors[3]     = "0.0 0.1 0.0 0.0";
-
-	sizes[0]	= 0.5;
-	sizes[1]	= 1.2;
-	sizes[2]	= 2.5;
-	sizes[3]	= 2.0;
-
-	times[0]	= 0.0;
-	times[1]	= 0.1;
-	times[2]	= 0.8;
-	times[3]	= 1.0;
-};
-
-datablock ParticleEmitterData(TW_MortarTrailEmitter)
-{
-	ejectionPeriodMS = 15;
-	periodVarianceMS = 0;
-	ejectionVelocity = 0;
-	velocityVariance = 0.0;
-	ejectionOffset   = 0.0;
-	thetaMin         = 0;
-	thetaMax         = 5;
-	phiReferenceVel  = 0;
-	phiVariance      = 360;
-	overrideAdvance = false;
-	particles = "TW_MortarTrailParticle";
 };
 
 datablock ParticleData(TW_ImpactRedParticle)

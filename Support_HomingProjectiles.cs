@@ -131,13 +131,19 @@ function Projectile::homeLoop(%obj)
 		homingEscapeDistance = %obj.homingEscapeDistance;
 		homingCanRetry = %obj.homingCanRetry;
 		homingAutomatic = %obj.homingAutomatic;
+		homingTickTime = %obj.homingTickTime;
 	};
-	
+
 	if(isObject(%p))
 	{
 		MissionCleanup.add(%p);
 		%p.setScale(%obj.getScale());
-		%p.hs = %p.schedule(150, homeLoop);
+		%time = %p.homingTickTime;
+
+		if(%time < 32)
+			%time = 32;
+
+		%p.hs = %p.schedule(%time, homeLoop);
 		%p.dataBlock.onHomeTick(%p);
 		%found.lockOnSet.add(%p);
 		%obj.delete();
@@ -171,6 +177,7 @@ package ProjectileHome
 			if(%obj.homingEscapeDistance $= "") %obj.homingEscapeDistance = %db.homingEscapeDistance;
 			if(%obj.homingCanRetry $= "") %obj.homingCanRetry = %db.homingCanRetry;
 			if(%obj.homingAutomatic $= "") %obj.homingAutomatic = %db.homingAutomatic;
+			if(%obj.homingTickTime $= "") %obj.homingTickTime = %db.homingTickTime;
 
 			%obj.homeLoop();
 		}

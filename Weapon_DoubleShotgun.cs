@@ -141,7 +141,7 @@ datablock ShapeBaseImageData(TW_DoubleShotgunImage)
 	projectileFalloffDamage = 1;
 
 	concBlastProj = ShotgunBlastProjectile;
-	concBlastDamage = 20;
+	concBlastDamage = 10;
 	concBlastScale = 1;
 
 	recoilHeight = 0;

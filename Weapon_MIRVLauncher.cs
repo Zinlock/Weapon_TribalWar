@@ -1,13 +1,76 @@
+datablock AudioProfile(TW_MIRVLauncherFireSound)
+{
+   filename    = "./wav/MIRV_Launcher_fire.wav";
+   description = HeavyClose3D;
+   preload = true;
+};
+
+datablock AudioProfile(TW_MIRVLauncherSplitSound)
+{
+   filename    = "./wav/MIRV_Launcher_split.wav";
+   description = HeavyClose3D;
+   preload = true;
+};
+
+datablock AudioProfile(TW_MIRVLauncherExplodeSound)
+{
+   filename    = "./wav/mirv_launcher_explode.wav";
+   description = ExplosionFar3D;
+   preload = true;
+};
+
+datablock AudioProfile(TW_MIRVLauncherFlySound)
+{
+   filename    = "./wav/mirv_launcher_fly.wav";
+   description = AudioDefaultLooping3D;
+   preload = true;
+};
+
+datablock ExplosionData(TW_MIRVClusterletExplosion)
+{
+	explosionShape = "Add-Ons/Weapon_Rocket_Launcher/explosionSphere1.dts";
+	soundProfile = TW_MIRVLauncherExplodeSound;
+
+	lifeTimeMS = 350;
+
+	particleEmitter = TW_LauncherExplosionEmitter2;
+	particleDensity = 40;
+	particleRadius = 0.5;
+
+	emitter[0] = TW_LauncherFlashEmitter;
+	emitter[1] = TW_LauncherExplosionBlueEmitter;
+
+	faceViewer     = true;
+	explosionScale = "2 2 2";
+
+	shakeCamera = true;
+	camShakeFreq = "10.0 11.0 10.0";
+	camShakeAmp = "3.0 10.0 3.0";
+	camShakeDuration = 0.5;
+	camShakeRadius = 100.0;
+
+	lightStartRadius = 5;
+	lightEndRadius = 15;
+	lightStartColor = "0 0.5 1 1";
+	lightEndColor = "0 0 0 0";
+
+	damageRadius = 16;
+	radiusDamage = 20;
+
+	impulseRadius = 10;
+	impulseForce = 1500;
+};
+
 datablock ProjectileData(TW_MIRVClusterletNHProjectile)
 {
 	projectileShapeName = "./dts/MIRV_Launcher_projectile.dts";
-	directDamage        = 5;
+	directDamage        = 0;
 	directDamageType = $DamageType::AE;
 	radiusDamageType = $DamageType::AE;
 	impactImpulse	   = 1;
 	verticalImpulse	   = 1000;
 	explosion           = TW_MIRVClusterletExplosion;
-	particleEmitter     = TW_LauncherTrailEmitter;
+	particleEmitter     = TW_LauncherTrailFusionBlueEmitter;
 
 	brickExplosionRadius = 3;
 	brickExplosionImpact = false;          //destroy a brick if we hit it directly?
@@ -24,18 +87,53 @@ datablock ProjectileData(TW_MIRVClusterletNHProjectile)
 	velInheritFactor    = 0;
 
 	armingDelay         = 0;
-	lifetime            = 5500;
-	fadeDelay           = 5490;
+	lifetime            = 30000;
+	fadeDelay           = 29990;
 	bounceElasticity    = 0.5;
 	bounceFriction       = 0.20;
 	isBallistic         = true;
-	gravityMod = 0.5;
+	gravityMod = 1.0;
 
 	hasLight    = true;
 	lightRadius = 5.0;
-	lightColor  = "1 0.5 0.0";
+	lightColor  = "0.0 0.5 1.0";
 
 	uiName = "";
+};
+
+datablock ExplosionData(TW_MIRVLauncherExplosion)
+{
+	explosionShape = "Add-Ons/Weapon_Rocket_Launcher/explosionSphere1.dts";
+	soundProfile = TW_MIRVLauncherSplitSound;
+
+	lifeTimeMS = 350;
+
+	particleEmitter = TW_LauncherExplosionEmitter2;
+	particleDensity = 40;
+	particleRadius = 0.5;
+
+	emitter[0] = TW_LauncherFlashEmitter;
+	emitter[1] = TW_LauncherExplosionBlueEmitter;
+
+	faceViewer     = true;
+	explosionScale = "2 2 2";
+
+	shakeCamera = true;
+	camShakeFreq = "10.0 11.0 10.0";
+	camShakeAmp = "3.0 10.0 3.0";
+	camShakeDuration = 0.5;
+	camShakeRadius = 100.0;
+
+	lightStartRadius = 5;
+	lightEndRadius = 15;
+	lightStartColor = "0 0.5 1 1";
+	lightEndColor = "0 0 0 0";
+
+	damageRadius = 10;
+	radiusDamage = 35;
+
+	impulseRadius = 14;
+	impulseForce = 1500;
 };
 
 datablock ProjectileData(TW_MirvLauncherNHProjectile)
@@ -44,10 +142,10 @@ datablock ProjectileData(TW_MirvLauncherNHProjectile)
 	directDamage        = 0;
 	directDamageType = $DamageType::AE;
 	radiusDamageType = $DamageType::AE;
-	impactImpulse	   = 0;
-	verticalImpulse	   = 0;
+	impactImpulse	   = 50;
+	verticalImpulse	   = 1000;
 	explosion           = TW_MirvLauncherExplosion;
-	particleEmitter     = TW_LauncherTrailEmitter;
+	particleEmitter     = TW_LauncherTrailFusionBlueEmitter;
 
 	brickExplosionRadius = 3;
 	brickExplosionImpact = false;          //destroy a brick if we hit it directly?
@@ -56,24 +154,24 @@ datablock ProjectileData(TW_MirvLauncherNHProjectile)
 	brickExplosionMaxVolumeFloating = 60;  //max volume of bricks that we can destroy if they aren't connected to the ground (should always be >= brickExplosionMaxVolume)
 
 	explodeOnDeath = true;
-	explodeOnPlayerImpact = true;
+	explodeOnPlayerImpact = false;
 
 	sound = TW_MirvLauncherFlySound;
 
 	muzzleVelocity      = 100;
 	velInheritFactor    = 0;
 
-	armingDelay         = 500;
+	armingDelay         = 2000;
 	lifetime            = 6000;
 	fadeDelay           = 5990;
-	bounceElasticity    = 0.6;
-	bounceFriction       = 0.20;
+	bounceElasticity    = 0.15;
+	bounceFriction       = 0.5;
 	isBallistic         = true;
 	gravityMod = 1.0;
 
 	hasLight    = true;
 	lightRadius = 5.0;
-	lightColor  = "1 0.5 0.0";
+	lightColor  = "0.0 0.5 1.0";
 
 	uiName = "";
 };
@@ -95,8 +193,10 @@ function Projectile::MIRVTrigger(%proj)
 {
 	%pos = %proj.getPosition();
 	%vec = vectorNormalize(%proj.getVelocity());
+
+	%spread = 5;
 	
-	ProjectileFire(TW_MIRVClusterletNHProjectile, %pos, %vec, 2, 6, 0, %proj.sourceObject, %proj.client, vectorLen(%proj.getVelocity()) * 2);
+	ProjectileFire(TW_MIRVClusterletNHProjectile, %pos, %vec, %spread, 8, 0, %proj.sourceObject, %proj.client, vectorLen(%proj.getVelocity()));
 
 	%proj.FuseExplode();
 }
