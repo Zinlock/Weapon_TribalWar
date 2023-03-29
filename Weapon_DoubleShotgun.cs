@@ -163,7 +163,7 @@ datablock ShapeBaseImageData(TW_DoubleShotgunImage)
 	whizzAngle = 80;
 
 	staticRealHitscan = true;
-	staticTotalRange = 28;
+	staticTotalRange = 48;
 	staticSpawnFakeProjectiles = 0.5;
 	staticTracerEffect = TW_BulletTrail;
 	
