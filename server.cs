@@ -53,7 +53,7 @@ exec("./Support_ArmingDelayFix.cs");
 exec("./Support_HomingProjectiles.cs");
 
 exec("./Weapon_Thumper.cs");
-exec("./Weapon_Spinfusor.cs");
+exec("./Weapon_LightSpinfusor.cs");
 exec("./Weapon_Flamethrower.cs");
 exec("./Weapon_SniperRifle.cs");
 exec("./Weapon_DoubleShotgun.cs");
@@ -73,3 +73,4 @@ exec("./Weapon_Blaster.cs");
 exec("./Weapon_JumpGun.cs");
 exec("./Weapon_Shocklance.cs");
 exec("./Weapon_PhaseRifle.cs");
+exec("./Weapon_Spinfusor.cs");

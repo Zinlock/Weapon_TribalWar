@@ -32,9 +32,23 @@ datablock AudioProfile(TW_MagnumCycleSound)
 	preload = true;
 };
 
-datablock AudioProfile(TW_SpinfusorReloadSound)
+datablock AudioProfile(TW_LightSpinfusorReloadSound)
+{
+	filename    = "./wav/spinfusor_light_reload.wav";
+	description = AudioClose3D;
+	preload = true;
+};
+
+datablock AudioProfile(TW_SpinfusorReload1Sound)
 {
 	filename    = "./wav/spinfusor_reload.wav";
+	description = AudioClose3D;
+	preload = true;
+};
+
+datablock AudioProfile(TW_SpinfusorReload2Sound)
+{
+	filename    = "./wav/spinfusor_reload2.wav";
 	description = AudioClose3D;
 	preload = true;
 };

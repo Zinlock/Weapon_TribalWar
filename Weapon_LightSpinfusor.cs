@@ -1,20 +1,20 @@
-datablock AudioProfile(TW_SpinfusorFireSound)
+datablock AudioProfile(TW_LightSpinfusorFireSound)
 {
-   filename    = "./wav/spinfusor_fire.wav";
+   filename    = "./wav/spinfusor_light_fire.wav";
    description = HeavyClose3D;
    preload = true;
 };
 
-datablock AudioProfile(TW_SpinfusorExplodeSound)
+datablock AudioProfile(TW_LightSpinfusorExplodeSound)
 {
-   filename    = "./wav/spinfusor_explode.wav";
+   filename    = "./wav/spinfusor_light_explode.wav";
    description = ExplosionFarLoud3D;
    preload = true;
 };
 
-datablock AudioProfile(TW_SpinfusorFlySound)
+datablock AudioProfile(TW_LightSpinfusorFlySound)
 {
-   filename    = "./wav/spinfusor_fly.wav";
+   filename    = "./wav/spinfusor_light_fly.wav";
    description = AudioDefaultLooping3D;
    preload = true;
 };
@@ -26,10 +26,10 @@ datablock AudioProfile(TW_SpinfusorUnholsterSound)
    preload = true;
 };
 
-datablock ExplosionData(TW_SpinfusorExplosion)
+datablock ExplosionData(TW_LightSpinfusorExplosion)
 {
 	explosionShape = "Add-Ons/Weapon_Rocket_Launcher/explosionSphere1.dts";
-	soundProfile = TW_SpinfusorExplodeSound;
+	soundProfile = TW_LightSpinfusorExplodeSound;
 
 	lifeTimeMS = 350;
 
@@ -55,13 +55,13 @@ datablock ExplosionData(TW_SpinfusorExplosion)
 	lightEndColor = "0 0 0 0";
 
 	damageRadius = 12;
-	radiusDamage = 50;
+	radiusDamage = 30;
 
 	impulseRadius = 10;
 	impulseForce = 1500;
 };
 
-datablock ProjectileData(TW_SpinfusorProjectile)
+datablock ProjectileData(TW_LightSpinfusorProjectile)
 {
 	projectileShapeName = "./dts/spinfusor_projectile.1.dts";
 	directDamage        = 50;
@@ -69,7 +69,7 @@ datablock ProjectileData(TW_SpinfusorProjectile)
 	radiusDamageType = $DamageType::AE;
 	impactImpulse	   = 1;
 	verticalImpulse	   = 1000;
-	explosion           = TW_SpinfusorExplosion;
+	explosion           = TW_LightSpinfusorExplosion;
 	particleEmitter     = TW_LauncherTrailSpinEmitter;
 
 	brickExplosionRadius = 3;
@@ -81,7 +81,7 @@ datablock ProjectileData(TW_SpinfusorProjectile)
 	explodeOnDeath = true;
 	explodeOnPlayerImpact = true;
 
-	sound = TW_SpinfusorFlySound;
+	sound = TW_LightSpinfusorFlySound;
 
 	muzzleVelocity      = 100;
 	velInheritFactor    = 0;
@@ -101,27 +101,27 @@ datablock ProjectileData(TW_SpinfusorProjectile)
 	uiName = "";
 };
 
-function TW_SpinfusorProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity)
+function TW_LightSpinfusorProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity)
 {
 	AETrailedProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity);
 }
 
-function TW_SpinfusorProjectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %velocity)
+function TW_LightSpinfusorProjectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %velocity)
 {
 	AETrailedProjectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %velocity);
 }
 
-function TW_SpinfusorProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
+function TW_LightSpinfusorProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
 {
 	AETrailedProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal);
 }
 
-datablock ItemData(TW_SpinfusorItem)
+datablock ItemData(TW_LightSpinfusorItem)
 {
 	category = "Weapon";
 	className = "Weapon";
 
-	shapeFile = "./dts/Spinfusor.dts";
+	shapeFile = "./dts/light_spinfusor.dts";
 	rotate = false;
 	mass = 1;
 	density = 0.2;
@@ -129,12 +129,12 @@ datablock ItemData(TW_SpinfusorItem)
 	friction = 0.6;
 	emap = true;
 
-	uiName = "TW: Spinfusor";
-	iconName = "./ico/Spinfusor";
+	uiName = "TW: Light Spinfusor";
+	iconName = "./ico/LightSpinfusor";
 	doColorShift = true;
-	colorShiftColor = "0.25 0.25 0.25 1";
+	colorShiftColor = "0.5 0.65 0.85 1";
 
-	image = TW_SpinfusorImage;
+	image = TW_LightSpinfusorImage;
 	canDrop = true;
 
 	AEAmmo = 1;
@@ -155,9 +155,9 @@ datablock ItemData(TW_SpinfusorItem)
 	tribalClass = "impact";
 };
 
-datablock ShapeBaseImageData(TW_SpinfusorImage)
+datablock ShapeBaseImageData(TW_LightSpinfusorImage)
 {
-	shapeFile = "./dts/Spinfusor.dts";
+	shapeFile = "./dts/light_spinfusor.dts";
 	emap = true;
 
 	mountPoint = 0;
@@ -169,9 +169,9 @@ datablock ShapeBaseImageData(TW_SpinfusorImage)
 
 	className = "WeaponImage";
 
-	item = TW_SpinfusorItem;
+	item = TW_LightSpinfusorItem;
 	ammo = " ";
-	projectile = TW_SpinfusorProjectile;
+	projectile = TW_LightSpinfusorProjectile;
 	projectileType = Projectile;
 
 	shellExitDir        = "-1 0 0.5";
@@ -184,7 +184,7 @@ datablock ShapeBaseImageData(TW_SpinfusorImage)
 	hideHands = false;
 
 	doColorShift = true;
-	colorShiftColor = TW_SpinfusorItem.colorShiftColor;
+	colorShiftColor = TW_LightSpinfusorItem.colorShiftColor;
 
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
@@ -192,10 +192,10 @@ datablock ShapeBaseImageData(TW_SpinfusorImage)
 	screenshakeMin = "0.3 0.3 0.3"; 
 	screenshakeMax = "1 1 1";
 
-	projectileDamage = 45;
+	projectileDamage = 20;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.0;
-	projectileVelocity = 100;
+	projectileVelocity = 125;
 	projectileTagStrength = 0;
 	projectileTagRecovery = 1.0;
 	projectileInheritance = 0.5;
@@ -260,12 +260,12 @@ datablock ShapeBaseImageData(TW_SpinfusorImage)
 	stateSequence[7]			= "noDisc";
 	
 	stateName[9]				= "ReloadMagIn";
-	stateTimeoutValue[9]			= 0.9;
+	stateTimeoutValue[9]			= 0.3;
 	stateScript[9]				= "onReloadMagIn";
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
 	stateSequence[9]			= "root";
-	stateSound[9]				= TW_SpinfusorReload1Sound;
+	stateSound[9]				= TW_LightSpinfusorReloadSound;
 	
 	stateName[10]				= "ReloadEnd";
 	stateTimeoutValue[10]			= 0.4;
@@ -306,11 +306,11 @@ datablock ShapeBaseImageData(TW_SpinfusorImage)
 	stateTransitionOnTriggerUp[23]	  	= "FireLoadCheckA";
 };
 
-function TW_SpinfusorImage::AEOnFire(%this,%obj,%slot)
+function TW_LightSpinfusorImage::AEOnFire(%this,%obj,%slot)
 {	
   %obj.schedule(0, "aeplayThread", "2", "jump");
 	%obj.stopAudio(0); 
-  %obj.playAudio(0, TW_SpinfusorFireSound);
+  %obj.playAudio(0, TW_LightSpinfusorFireSound);
   
 	%obj.blockImageDismount = true;
 	%obj.schedule(400, unBlockImageDismount);
@@ -318,32 +318,28 @@ function TW_SpinfusorImage::AEOnFire(%this,%obj,%slot)
 	Parent::AEOnFire(%this, %obj, %slot);
 }
 
-function TW_SpinfusorImage::onDryFire(%this, %obj, %slot)
+function TW_LightSpinfusorImage::onDryFire(%this, %obj, %slot)
 {
 	%obj.aeplayThread(2, plant);
 	serverPlay3D(AEDryFireSound, %obj.getHackPosition());
 }
 
-function TW_SpinfusorImage::onReloadMagIn(%this,%obj,%slot)
+function TW_LightSpinfusorImage::onReloadMagIn(%this,%obj,%slot)
 {
   %obj.aeplayThread("3", "plant");
-	%obj.reload1Schedule = %obj.schedule(1200, stopAudio, 1);
-	%obj.reload2Schedule = %obj.schedule(1200, playAudio, 1, TW_SpinfusorReload2Sound);
-	%obj.reload3Schedule = %obj.schedule(500, aeplayThread, 3, "shiftRight");
-	%obj.reload4Schedule = %obj.schedule(1400, aeplayThread, 3, "plant");
 }
 
-function TW_SpinfusorImage::onReloadEnd(%this,%obj,%slot)
+function TW_LightSpinfusorImage::onReloadEnd(%this,%obj,%slot)
 {
 	Parent::AEMagReloadAll(%this, %obj, %slot);
 }
 
-function TW_SpinfusorImage::onReloadStart(%this,%obj,%slot)
+function TW_LightSpinfusorImage::onReloadStart(%this,%obj,%slot)
 {
 
 }
 
-function TW_SpinfusorImage::onReady(%this,%obj,%slot)
+function TW_LightSpinfusorImage::onReady(%this,%obj,%slot)
 {
 	%obj.baadDisplayAmmo(%this);
 
@@ -351,21 +347,18 @@ function TW_SpinfusorImage::onReady(%this,%obj,%slot)
 		%obj.schedule(0, setImageAmmo, %slot, 0);
 }
 
-function TW_SpinfusorImage::onMount(%this,%obj,%slot)
+function TW_LightSpinfusorImage::onMount(%this,%obj,%slot)
 {
 	%obj.aeplayThread(2, plant);
 	%this.AEMountSetup(%obj, %slot);
 	parent::onMount(%this,%obj,%slot);
 }
 
-function TW_SpinfusorImage::onUnMount(%this,%obj,%slot)
+function TW_LightSpinfusorImage::onUnMount(%this,%obj,%slot)
 {
 	%this.AEUnmountCleanup(%obj, %slot);
 
-	cancel(%obj.reload1Schedule);
 	cancel(%obj.reload2Schedule);
-	cancel(%obj.reload3Schedule);
-	cancel(%obj.reload4Schedule);
 
 	parent::onUnMount(%this,%obj,%slot);	
 }
