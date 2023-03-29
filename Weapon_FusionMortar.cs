@@ -78,7 +78,7 @@ datablock ProjectileData(TW_FusionMortarProjectile)
 	muzzleVelocity      = 100;
 	velInheritFactor    = 0;
 
-	armingDelay         = 1000;
+	armingDelay         = 500;
 	lifetime            = 30000;
 	fadeDelay           = 29990;
 	bounceElasticity    = 0.1;
