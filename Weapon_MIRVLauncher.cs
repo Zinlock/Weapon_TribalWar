@@ -55,10 +55,10 @@ datablock ExplosionData(TW_MIRVClusterletExplosion)
 	lightEndColor = "0 0 0 0";
 
 	damageRadius = 16;
-	radiusDamage = 20;
+	radiusDamage = 15;
 
 	impulseRadius = 10;
-	impulseForce = 1500;
+	impulseForce = 1000;
 };
 
 datablock ProjectileData(TW_MIRVClusterletNHProjectile)
@@ -67,8 +67,8 @@ datablock ProjectileData(TW_MIRVClusterletNHProjectile)
 	directDamage        = 0;
 	directDamageType = $DamageType::AE;
 	radiusDamageType = $DamageType::AE;
-	impactImpulse	   = 1;
-	verticalImpulse	   = 1000;
+	impactImpulse	   = 0;
+	verticalImpulse	   = 100;
 	explosion           = TW_MIRVClusterletExplosion;
 	particleEmitter     = TW_LauncherTrailFusionBlueEmitter;
 
@@ -86,11 +86,11 @@ datablock ProjectileData(TW_MIRVClusterletNHProjectile)
 	muzzleVelocity      = 100;
 	velInheritFactor    = 0;
 
-	armingDelay         = 0;
+	armingDelay         = 500;
 	lifetime            = 30000;
 	fadeDelay           = 29990;
-	bounceElasticity    = 0.5;
-	bounceFriction       = 0.20;
+	bounceElasticity    = 0.15;
+	bounceFriction       = 0.5;
 	isBallistic         = true;
 	gravityMod = 1.0;
 
@@ -143,7 +143,7 @@ datablock ProjectileData(TW_MirvLauncherNHProjectile)
 	directDamageType = $DamageType::AE;
 	radiusDamageType = $DamageType::AE;
 	impactImpulse	   = 50;
-	verticalImpulse	   = 1000;
+	verticalImpulse	   = 500;
 	explosion           = TW_MirvLauncherExplosion;
 	particleEmitter     = TW_LauncherTrailFusionBlueEmitter;
 
@@ -194,7 +194,7 @@ function Projectile::MIRVTrigger(%proj)
 	%pos = %proj.getPosition();
 	%vec = vectorNormalize(%proj.getVelocity());
 
-	%spread = 5;
+	%spread = 7.5;
 	
 	ProjectileFire(TW_MIRVClusterletNHProjectile, %pos, %vec, %spread, 8, 0, %proj.sourceObject, %proj.client, vectorLen(%proj.getVelocity()));
 
@@ -280,7 +280,7 @@ datablock ShapeBaseImageData(TW_MirvLauncherNHImage)
 	projectileDamage = 1;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.0;
-	projectileVelocity = 125;
+	projectileVelocity = 100;
 	projectileTagStrength = 0;
 	projectileTagRecovery = 1.0;
 	projectileInheritance = 0.75;
