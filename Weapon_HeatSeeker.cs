@@ -128,6 +128,8 @@ datablock ProjectileData(TW_HeatSeekerProjectile)
 
 	uiName = "";
 
+	vehicleDamageMult = 2;
+
 	homingProjectile = true;
 	homingAccuracy = 80;
 	homingAccuracyClose = 200;
@@ -140,6 +142,43 @@ datablock ProjectileData(TW_HeatSeekerProjectile)
 	homingAutomatic = false;
 	homingTickTime = 200;
 };
+
+function TW_HeatSeekerProjectile::damage(%this,%obj,%col,%fade,%pos,%normal)
+{
+	%damageType = $DamageType::Direct;
+	if(%this.DirectDamageType)
+		%damageType = %this.DirectDamageType;
+
+	%scale = getWord(%obj.getScale(), 2);
+	%directDamage = %this.directDamage * %scale;
+
+	if(%col.getType() & $TypeMasks::PlayerObjectType && !%col.getDataBlock().isTurretArmor)
+		%col.damage(%obj, %pos, %directDamage, %damageType);
+	else
+		%col.damage(%obj, %pos, %directDamage * %this.vehicleDamageMult, %damageType);
+}
+
+function TW_HeatSeekerProjectile::radiusDamage(%this, %obj, %col, %distanceFactor, %pos, %damageAmt)
+{
+	if(%distanceFactor <= 0)
+		return;
+	else if(%distanceFactor > 1)
+		%distanceFactor = 1;
+
+	%damageAmt *= %distanceFactor;
+
+	if(%damageAmt)
+	{
+		%damageType = $DamageType::Radius;
+		if(%this.RadiusDamageType)
+				%damageType = %this.RadiusDamageType;
+
+		if(%col.getType() & $TypeMasks::PlayerObjectType && !%col.getDataBlock().isTurretArmor)
+			%col.damage(%obj, %pos, %damageAmt, %damageType);
+		else
+			%col.damage(%obj, %pos, %damageAmt * %this.vehicleDamageMult, %damageType);
+	}
+}
 
 function TW_HeatSeekerProjectile::onAdd(%db, %proj)
 {
@@ -243,7 +282,6 @@ datablock ShapeBaseImageData(TW_HeatSeekerImage)
 	projectileInheritance = 0.75;
 
 	alwaysSpawnProjectile = true;
-	projectileVehicleDamageMult = 0.5;
 
 	recoilHeight = 0;
 	recoilWidth = 0;
