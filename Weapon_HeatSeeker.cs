@@ -83,7 +83,7 @@ datablock ExplosionData(TW_HeatSeekerExplosion)
 	lightEndColor = "0 0 0 0";
 
 	damageRadius = 10;
-	radiusDamage = 30;
+	radiusDamage = 40;
 
 	impulseRadius = 14;
 	impulseForce = 1500;
@@ -305,7 +305,7 @@ datablock ShapeBaseImageData(TW_HeatSeekerImage)
 	stateSequence[7]			= "ReloadStart";
 
 	stateName[9]				= "ReloadMagIn";
-	stateTimeoutValue[9]			= 0.8;
+	stateTimeoutValue[9]			= 0.4;
 	stateScript[9]				= "onReloadMagIn";
 	stateTransitionOnTimeout[9]		= "ReloadEnd";
 	stateWaitForTimeout[9]			= true;
@@ -359,6 +359,8 @@ function TW_HeatSeekerImage::AEOnFire(%this,%obj,%slot)
 		%this.onDryFire(%obj, %slot);
 		return;
 	}
+
+	// todo!!!: make this only fire if the target is jetting
 
   %obj.schedule(0, "aeplayThread", "2", "jump");
 	%obj.stopAudio(0); 
@@ -467,24 +469,47 @@ function HeatLockOnPrint(%obj, %col, %valA, %valB)
 			}
 		}
 	}
-	
+
 	if(isObject(%col.client))
 	{
+		if(isObject(%mount = %col.getObjectMount()))
+		{
+			%db = %mount.getDatablock();
+			for(%i = 0; %i < %db.numMountPoints; %i++)
+			{
+				%targ = %mount.getMountedObject(%i);
+				if(isObject(%targ) && %targ != %col)
+					HeatLockOnPrint(-1, %targ, 0, %valB);
+			}
+		}
+
+		if(%valB)
+			%col.lastLockedTime = getSimTime();
+
 		if(getSimTime() - %col.lastLockedSound >= 1000)
 		{
-			if(!%valB && getSimTime() - %col.lastLockedTime >= 500)
+			if(!%valB && getSimTime() - %col.lastLockedTime >= 1000)
 			{
-				%col.lastLockedSound = getSimTime();
 				%col.client.play2D(TW_HeatSeekerWarnLockingSound);
 				%col.client.centerPrint("<color:FFCC33><font:impact:32>! MISSILE LOCKING !", 2);
 			}
 			else
 			{
-				%col.lastLockedSound = getSimTime();
-				%col.lackLockedTime = getSimTime();
 				%col.client.play2D(TW_HeatSeekerWarnLockedSound);
 				%col.client.centerPrint("<color:FF4411><font:impact:32>!!! MISSILE LOCKED !!!", 2);
 			}
+
+			%col.lastLockedSound = getSimTime();
+		}
+	}
+	else if(%col.getMountedObjectCount() > 0)//%col.getType() & $TypeMasks::VehicleObjectType)
+	{
+		%coldb = %col.getDatablock();
+		for(%i = 0; %i < %coldb.numMountPoints; %i++)
+		{
+			%targ = %col.getMountedObject(%i);
+			if(isObject(%targ))
+				HeatLockOnPrint(-1, %targ, 0, %valB);
 		}
 	}
 }
