@@ -47,7 +47,7 @@ datablock ExplosionData(TW_FusionMortarExplosion)
 	lightEndColor = "0 0 0 0";
 
 	damageRadius = 17;
-	radiusDamage = 90;
+	radiusDamage = 80;
 
 	impulseRadius = 19;
 	impulseForce = 1500;
@@ -56,7 +56,7 @@ datablock ExplosionData(TW_FusionMortarExplosion)
 datablock ProjectileData(TW_FusionMortarProjectile)
 {
 	projectileShapeName = "./dts/fusion_mortar_projectile.dts";
-	directDamage        = 50;
+	directDamage        = 10;
 	directDamageType = $DamageType::AE;
 	radiusDamageType = $DamageType::AE;
 	impactImpulse	   = 50;
@@ -90,22 +90,46 @@ datablock ProjectileData(TW_FusionMortarProjectile)
 	lightRadius = 5.0;
 	lightColor  = "0.0 1.0 0.0";
 
+	vehicleDamageMult = 2;
+
 	uiName = "";
 };
 
-function TW_FusionMortarProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity)
-{
-	AETrailedProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity);
-}
-
-function TW_FusionMortarProjectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %velocity)
-{
-	AETrailedProjectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %velocity);
-}
-
 function TW_FusionMortarProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
 {
-	AETrailedProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal);
+	%damageType = $DamageType::Direct;
+	if(%this.DirectDamageType)
+		%damageType = %this.DirectDamageType;
+
+	%scale = getWord(%obj.getScale(), 2);
+	%directDamage = %this.directDamage * %scale;
+
+	if(%col.getType() & $TypeMasks::PlayerObjectType && !%col.getDataBlock().isTurretArmor)
+		%col.damage(%obj, %pos, %directDamage, %damageType);
+	else
+		%col.damage(%obj, %pos, %directDamage * %this.vehicleDamageMult, %damageType);
+}
+
+function TW_FusionMortarProjectile::radiusDamage(%this, %obj, %col, %distanceFactor, %pos, %damageAmt)
+{
+	if(%distanceFactor <= 0)
+		return;
+	else if(%distanceFactor > 1)
+		%distanceFactor = 1;
+
+	%damageAmt *= %distanceFactor;
+
+	if(%damageAmt)
+	{
+		%damageType = $DamageType::Radius;
+		if(%this.RadiusDamageType)
+				%damageType = %this.RadiusDamageType;
+
+		if(%col.getType() & $TypeMasks::PlayerObjectType && !%col.getDataBlock().isTurretArmor)
+			%col.damage(%obj, %pos, %damageAmt, %damageType);
+		else
+			%col.damage(%obj, %pos, %damageAmt * %this.vehicleDamageMult, %damageType);
+	}
 }
 
 datablock ItemData(TW_FusionMortarItem)
@@ -193,7 +217,7 @@ datablock ShapeBaseImageData(TW_FusionMortarImage)
 	projectileInheritance = 0.75;
 
 	alwaysSpawnProjectile = true;
-	projectileVehicleDamageMult = 1.5;
+	projectileVehicleDamageMult = 2;
 
 	recoilHeight = 0;
 	recoilWidth = 0;
