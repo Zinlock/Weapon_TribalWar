@@ -10,6 +10,16 @@
 // homingEscapeDistance = 25; 	// how far the projectile has to be to stop following the player, must be >= homingRadius
 // homingAutomatic = true;			// lets the projectile look for targets itself
 
+function Projectile::getState(%obj)
+{
+	return "Move";
+}
+
+function Projectile::getHackPosition(%obj)
+{
+	return %obj.getPosition();
+}
+
 function Projectile::homeLoop(%obj)
 {
 	if(!isObject(%obj.client))

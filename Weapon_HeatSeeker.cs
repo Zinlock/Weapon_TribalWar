@@ -83,7 +83,7 @@ datablock ExplosionData(TW_HeatSeekerExplosion)
 	lightEndColor = "0 0 0 0";
 
 	damageRadius = 10;
-	radiusDamage = 40;
+	radiusDamage = 35;
 
 	impulseRadius = 14;
 	impulseForce = 1500;
@@ -128,7 +128,10 @@ datablock ProjectileData(TW_HeatSeekerProjectile)
 
 	uiName = "";
 
-	vehicleDamageMult = 2;
+	vehicleDamageMult = 2.25;
+
+	flaresCanBait = true;
+	flaresCanDestroy = true;
 
 	homingProjectile = true;
 	homingAccuracy = 80;
@@ -193,7 +196,8 @@ function TW_HeatSeekerProjectile::onAdd(%db, %proj)
 function TW_HeatSeekerProjectile::onHomeTick(%db, %proj)
 {
 	%col = %proj.target;
-	if(isObject(%col))
+
+	if(isObject(%col) && %col.IsA("Player"))
 		HeatLockOnPrint(-1, %col, 0, 1);
 }
 
@@ -276,7 +280,7 @@ datablock ShapeBaseImageData(TW_HeatSeekerImage)
 	projectileDamage = 20;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.0;
-	projectileVelocity = 75;
+	projectileVelocity = 125;
 	projectileTagStrength = 0;
 	projectileTagRecovery = 1.0;
 	projectileInheritance = 0.75;
@@ -389,6 +393,32 @@ datablock ShapeBaseImageData(TW_HeatSeekerImage)
 	stateTransitionOnTriggerUp[23]	  	= "FireLoadCheckA";
 };
 
+package playerJettingPackage
+{
+	function Armor::onTrigger(%db, %pl, %trig, %val)
+	{
+		if(%trig == 4)
+		{
+			%pl.jetDown = %val;
+			if(%val) %pl.jetDownTime = getSimTime();
+			else %pl.jetUpTime = getSimTime();
+		}
+
+		return Parent::onTrigger(%db, %pl, %trig, %val);
+	}
+};
+activatePackage(playerJettingPackage);
+
+function Player::isJetting(%pl)
+{
+	return (%pl.jetDown && %pl.getEnergyLevel() > %pl.getDataBlock().minJetEnergy);
+}
+
+function Player::isHSJetting(%pl, %time)
+{
+	return (%pl.jetDown && %pl.getEnergyLevel() > %pl.getDataBlock().minJetEnergy) || (getSimTime() - %pl.jetDownTime < %time);
+}
+
 function TW_HeatSeekerImage::AEOnFire(%this,%obj,%slot)
 {
 	if(!isObject(%obj.heatTarget) || !%obj.heatLocked)
@@ -397,8 +427,6 @@ function TW_HeatSeekerImage::AEOnFire(%this,%obj,%slot)
 		%this.onDryFire(%obj, %slot);
 		return;
 	}
-
-	// todo!!!: make this only fire if the target is jetting
 
   %obj.schedule(0, "aeplayThread", "2", "jump");
 	%obj.stopAudio(0); 
@@ -456,7 +484,8 @@ function TW_HeatSeekerImage::onMount(%this,%obj,%slot)
 	%lockAngle = 3.5;
 	%minRange = 32;
 	%lockRange = 512;
-	%obj.heatLockOnLoop(%this, %slot, %lockTime, %lockAngle, %minRange, %lockRange, $TypeMasks::PlayerObjectType | $TypeMasks::VehicleObjectType);
+	%jetTime = 2000;
+	%obj.heatLockOnLoop(%this, %slot, %lockTime, %lockAngle, %minRange, %lockRange, $TypeMasks::PlayerObjectType | $TypeMasks::VehicleObjectType, %jetTime);
 
 	parent::onMount(%this,%obj,%slot);
 }
@@ -565,7 +594,7 @@ function TW_HeatSeekerImage::heatNoTarget(%this, %obj, %slot, %col)
 		%obj.client.centerPrint("<color:44FF44><font:impact:32>----- TARGET LOST -----<br><font:impact:24>", 2);
 }
 
-function Player::heatLockOnLoop(%pl, %img, %slot, %time, %angle, %minRange, %range, %mask)
+function Player::heatLockOnLoop(%pl, %img, %slot, %time, %angle, %minRange, %range, %mask, %jetTime)
 {
 	cancel(%pl.heatLock);
 
@@ -607,6 +636,9 @@ function Player::heatLockOnLoop(%pl, %img, %slot, %time, %angle, %minRange, %ran
 				%pos = %col.getWorldBoxCenter();
 
 				if(%minRange > 0 && vectorDist(%pl.getHackPosition(), %pos) < %minRange)
+					continue;
+				
+				if((%col.getType() & $TypeMasks::PlayerObjectType) && !%col.isHSJetting(%jetTime))
 					continue;
 
 				// if(isObject(%col.lockOnSet) && %col.lockOnSet.getCount() >= %maxLockOn && %maxLockOn > 0)
@@ -650,7 +682,7 @@ function Player::heatLockOnLoop(%pl, %img, %slot, %time, %angle, %minRange, %ran
 			%ang = mRadToDeg(mAcos(vectorDot(%vec, vectorNormalize(vectorSub(%pos, %pl.getHackPosition())))));
 
 			%ray = containerRayCast(%eye, %pos, $TypeMasks::FxBrickObjectType | $TypeMasks::InteriorObjectType | $TypeMasks::StaticObjectType, %pl, %col);
-			if(!isObject(%ray) && %ang <= %angle && (%minRange <= 0 || vectorDist(%pl.getHackPosition(), %pos) > %minRange))
+			if(!isObject(%ray) && %ang <= %angle && (%minRange <= 0 || vectorDist(%pl.getHackPosition(), %pos) > %minRange) && (!(%col.getType() & $TypeMasks::PlayerObjectType) || %col.isHSJetting(%jetTime)))
 			{
 				if(getSimTime() - %pl.heatTargetTime < %time && %time > 0)
 				{
@@ -676,5 +708,5 @@ function Player::heatLockOnLoop(%pl, %img, %slot, %time, %angle, %minRange, %ran
 			%img.heatNoTarget(%pl, %slot);
 	}
 
-	%pl.heatLock = %pl.schedule(50, heatLockOnLoop, %img, %slot, %time, %angle, %minRange, %range, %mask);
+	%pl.heatLock = %pl.schedule(50, heatLockOnLoop, %img, %slot, %time, %angle, %minRange, %range, %mask, %jetTime);
 }

@@ -51,6 +51,7 @@ exec("./Sound_Blockland.cs");
 exec("./Sound_Reload.cs");
 exec("./Support_ArmingDelayFix.cs");
 exec("./Support_HomingProjectiles.cs");
+exec("./Support_PrjLoop.cs");
 
 exec("./Weapon_Thumper.cs");
 exec("./Weapon_LightSpinfusor.cs");
@@ -74,3 +75,4 @@ exec("./Weapon_JumpGun.cs");
 exec("./Weapon_Shocklance.cs");
 exec("./Weapon_PhaseRifle.cs");
 exec("./Weapon_Spinfusor.cs");
+exec("./Weapon_Flare.cs");
