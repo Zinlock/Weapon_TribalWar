@@ -222,7 +222,9 @@ function TW_ELFGunImage::onFire(%this,%obj,%slot)
 			%trail.setScale(%size SPC %dist SPC %size);
 
 			%targ.setEnergyLevel(%targ.getEnergyLevel() - %this.elfDrain);
-			%targ.damage(%obj, %targ.getCenterPos(), %this.elfDamage, $DamageType::Direct);
+
+			if(%targ.getEnergyLevel() <= 10)
+				%targ.damage(%obj, %targ.getCenterPos(), %this.elfDamage, $DamageType::Direct);
 			
 			if(isObject(%obj.client))
 			{
