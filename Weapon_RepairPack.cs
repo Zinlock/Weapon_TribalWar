@@ -79,7 +79,7 @@ datablock ShapeBaseImageData(TW_RepairGunImage)
 	repairAngle = 45;
 
 	minEnergy = 5.0;
-	energyUse = 3.0;
+	energyUse = 1.5;
 	repairAmt = 0.75;
 	repairAmtUtil = 2;
 
