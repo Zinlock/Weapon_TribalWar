@@ -156,8 +156,9 @@ function Projectile::homeLoop(%obj)
 		%p.hs = %p.schedule(%time, homeLoop);
 		%p.dataBlock.onHomeTick(%p);
 		%found.lockOnSet.add(%p);
-		%obj.delete();
 	}
+
+	%obj.delete();
 }
 
 if(!isFunction(ProjectileData, onAdd))
