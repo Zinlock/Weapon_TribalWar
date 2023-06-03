@@ -638,7 +638,7 @@ function Player::heatLockOnLoop(%pl, %img, %slot, %time, %angle, %minRange, %ran
 				if(%minRange > 0 && vectorDist(%pl.getHackPosition(), %pos) < %minRange)
 					continue;
 				
-				if((%col.getType() & $TypeMasks::PlayerObjectType) && !%col.isHSJetting(%jetTime))
+				if((%col.getType() & $TypeMasks::PlayerObjectType) && !%col.getDataBlock().isTurretArmor && !%col.isHSJetting(%jetTime))
 					continue;
 
 				// if(isObject(%col.lockOnSet) && %col.lockOnSet.getCount() >= %maxLockOn && %maxLockOn > 0)
@@ -682,7 +682,7 @@ function Player::heatLockOnLoop(%pl, %img, %slot, %time, %angle, %minRange, %ran
 			%ang = mRadToDeg(mAcos(vectorDot(%vec, vectorNormalize(vectorSub(%pos, %pl.getHackPosition())))));
 
 			%ray = containerRayCast(%eye, %pos, $TypeMasks::FxBrickObjectType | $TypeMasks::InteriorObjectType | $TypeMasks::StaticObjectType, %pl, %col);
-			if(!isObject(%ray) && %ang <= %angle && (%minRange <= 0 || vectorDist(%pl.getHackPosition(), %pos) > %minRange) && (!(%col.getType() & $TypeMasks::PlayerObjectType) || %col.isHSJetting(%jetTime)))
+			if(!isObject(%ray) && %ang <= %angle && (%minRange <= 0 || vectorDist(%pl.getHackPosition(), %pos) > %minRange) && (!(%col.getType() & $TypeMasks::PlayerObjectType) || %col.getDataBlock().isTurretArmor || %col.isHSJetting(%jetTime)))
 			{
 				if(getSimTime() - %pl.heatTargetTime < %time && %time > 0)
 				{
