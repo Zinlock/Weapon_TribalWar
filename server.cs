@@ -76,3 +76,6 @@ exec("./Weapon_Shocklance.cs");
 exec("./Weapon_PhaseRifle.cs");
 exec("./Weapon_Spinfusor.cs");
 exec("./Weapon_Flare.cs");
+
+exec("./Packs.cs");
+exec("./Pack_Energy.cs");
