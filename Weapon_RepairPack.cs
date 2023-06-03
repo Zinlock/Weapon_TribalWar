@@ -28,7 +28,7 @@ datablock ItemData(TW_RepairGunItem)
 	emap = true;
 
 	uiName = "TW: Repair Gun";
-	iconName = "./ico/Repair";
+	iconName = "./ico/Repair_Gun";
 	doColorShift = true;
 	colorShiftColor = "0.45 0.15 0.15 1";
 

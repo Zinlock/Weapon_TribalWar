@@ -28,7 +28,7 @@ datablock ItemData(TW_ELFGunItem)
 	emap = true;
 
 	uiName = "TW: Charge Cannon";
-	iconName = "./ico/Charge";
+	iconName = "./ico/charge_cannon";
 	doColorShift = true;
 	colorShiftColor = "0.25 0.25 0.35 1";
 
