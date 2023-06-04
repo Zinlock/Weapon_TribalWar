@@ -12,7 +12,7 @@
 
 function Projectile::getDamagePercent(%obj)
 {
-	return 1.0;
+	return 0.0;
 }
 
 function Projectile::getHackPosition(%obj)
