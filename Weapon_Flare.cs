@@ -30,9 +30,9 @@ datablock ParticleData(TW_FlareFuseParticle)
 
 datablock ParticleEmitterData(TW_FlareFuseEmitter)
 {
-	ejectionPeriodMS = 2;
+	ejectionPeriodMS = 20;
 	periodVarianceMS = 0;
-	ejectionVelocity = 5;
+	ejectionVelocity = 10;
 	velocityVariance = 2;
 	ejectionOffset = 0.1;
 	thetaMin         = 0.0;
@@ -62,17 +62,17 @@ datablock ProjectileData(TW_FlareProjectile)
 
 	brickExplosionRadius = 0;
 	brickExplosionImpact = false;
-	brickExplosionForce  = 0;             
+	brickExplosionForce  = 0;
 	brickExplosionMaxVolume = 0;
 	brickExplosionMaxVolumeFloating = 0;
 
-	armingDelay         = 9999;
-	lifetime            = 10000;
-	fadeDelay           = 10000;
-	bounceElasticity    = 0.5;
-	bounceFriction      = 0.2;
+	armingDelay         = 4999;
+	lifetime            = 5000;
+	fadeDelay           = 5000;
+	bounceElasticity    = 0.25;
+	bounceFriction      = 0.5;
 	isBallistic         = true;
-	gravityMod = 0.5;
+	gravityMod = 0.1;
 
 	hasLight    = false;
 	lightRadius = 3.0;
