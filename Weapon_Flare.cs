@@ -83,7 +83,7 @@ datablock ProjectileData(TW_FlareProjectile)
 	PrjLoop_tickTime = 50;
 
 	isHeatFlare = true;
-	flareRadius = 32;
+	flareRadius = 64;
 	flareExplosionRadius = 2;
 
 	uiName = "TW flare";
