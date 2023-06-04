@@ -84,7 +84,7 @@ datablock ProjectileData(TW_FlareProjectile)
 
 	isHeatFlare = true;
 	flareRadius = 64;
-	flareExplosionRadius = 2;
+	flareExplosionRadius = 4;
 
 	uiName = "TW flare";
 };
@@ -187,6 +187,9 @@ function TW_FlareProjectile::PrjLoop_onTick(%this, %obj)
 {
 	%pos = %obj.getPosition();
 
+	if(isObject(%set = %obj.lockOnSet) && (%cts = %set.getCount()) > 0 && (%col = %set.getObject(%cts - 1)).isHoming && %col.target == %obj)
+		%obj.flareTarget = %col;
+	
 	if(!isObject(%obj.flareTarget))
 	{
 		%mask = $TypeMasks::fxBrickObjectType | $TypeMasks::StaticObjectType | $TypeMasks::StaticShapeObjectType | $TypeMasks::VehicleObjectType | $TypeMasks::TerrainObjectType | $TypeMasks::InteriorObjectType;
@@ -205,7 +208,7 @@ function TW_FlareProjectile::PrjLoop_onTick(%this, %obj)
 			if(!%db.homingProjectile || !%db.flaresCanBait)
 				continue;
 
-			if(!%col.isHoming || !isObject(%col.target) || %col.target.getDataBlock().isHeatFlare)
+			if(!%col.isHoming || !isObject(%col.target) || (%col.target.getDataBlock().isHeatFlare && %col.target != %obj))
 				continue;
 
 			if(%col.target == %obj)
@@ -226,7 +229,7 @@ function TW_FlareProjectile::PrjLoop_onTick(%this, %obj)
 
 		if(%col.getDataBlock().flaresCanDestroy)
 		{
-			%next = vectorAdd(%col.getPosition(), vectorScale(%col.getVelocity(), 50/1000));
+			%next = vectorAdd(%col.getPosition(), vectorScale(%col.getVelocity(), 25/1000));
 			if(vectorDist(%col.getPosition(), %pos) < %this.flareExplosionRadius || vectorDist(%next, %pos) < %this.flareExplosionRadius)
 			{
 				%col.explode();
