@@ -10,9 +10,9 @@
 // homingEscapeDistance = 25; 	// how far the projectile has to be to stop following the player, must be >= homingRadius
 // homingAutomatic = true;			// lets the projectile look for targets itself
 
-function Projectile::getState(%obj)
+function Projectile::getDamagePercent(%obj)
 {
-	return "Move";
+	return 1.0;
 }
 
 function Projectile::getHackPosition(%obj)
@@ -22,6 +22,9 @@ function Projectile::getHackPosition(%obj)
 
 function Projectile::homeLoop(%obj)
 {
+	if(isObject(%obj.lastObject))
+		%obj.lastObject.delete();
+
 	if(!isObject(%obj.client))
 		return;
 	
@@ -39,7 +42,7 @@ function Projectile::homeLoop(%obj)
 	if(%muzzle <= 1)
 		return;
 	
-	if(!isObject(%obj.target) || %obj.target.getState() $= "Dead")
+	if(!isObject(%obj.target) || %obj.target.getDamagePercent() >= 1.0)
 	{
 		if(%obj.homingAutomatic)
 		{
@@ -132,6 +135,7 @@ function Projectile::homeLoop(%obj)
 		isHoming = true;
 		target = %obj.target;
 		reflectTime = %obj.reflectTime;
+		lastObject = %obj;
 		homingRadius = %obj.homingRadius;
 		homingLockOnLimit = %obj.homingLockOnLimit;
 		homingAccuracy = %obj.homingAccuracy;
