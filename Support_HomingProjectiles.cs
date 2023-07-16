@@ -33,7 +33,7 @@ function Projectile::homeLoop(%obj)
 	
 	if(%obj.doneHoming)
 		return;
-	
+
 	%client = %obj.client;
 	%pos = %obj.getPosition();
 	%muzzle = vectorLen(%obj.getVelocity());
@@ -175,7 +175,9 @@ package ProjectileHome
 {
 	function Projectile::onAdd(%obj)
 	{
+		talk(%obj.getPosition());
 		Parent::onAdd(%obj);
+		talk(%obj.getPosition());
 
 		%db = %obj.getdatablock();
 
@@ -194,7 +196,7 @@ package ProjectileHome
 			if(%obj.homingAutomatic $= "") %obj.homingAutomatic = %db.homingAutomatic;
 			if(%obj.homingTickTime $= "") %obj.homingTickTime = %db.homingTickTime;
 
-			%obj.homeLoop();
+			%obj.schedule(0, homeLoop);
 		}
 	}
 
