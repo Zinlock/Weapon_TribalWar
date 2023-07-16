@@ -197,7 +197,7 @@ function TW_HeatSeekerProjectile::onHomeTick(%db, %proj)
 {
 	%col = %proj.target;
 
-	if(isObject(%col) && %col.IsA("Player"))
+	if(isObject(%col))
 		HeatLockOnPrint(-1, %col, 0, 1);
 }
 
