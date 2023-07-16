@@ -175,9 +175,7 @@ package ProjectileHome
 {
 	function Projectile::onAdd(%obj)
 	{
-		talk(%obj.getPosition());
 		Parent::onAdd(%obj);
-		talk(%obj.getPosition());
 
 		%db = %obj.getdatablock();
 
