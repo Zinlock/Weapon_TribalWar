@@ -44,6 +44,8 @@ function ProjectileData::Damage (%this, %obj, %col, %fade, %pos, %normal) // Thi
 	}
 }
 
+$trapStaticTypemask = $TypeMasks::InteriorObjectType | $TypeMasks::TerrainObjectType | $TypeMasks::StaticShapeObjectType; // workaround for rebuilt
+
 exec("./Particle_Explosion.cs");
 exec("./Particle_Trail.cs");
 exec("./Item_Ammo.cs");

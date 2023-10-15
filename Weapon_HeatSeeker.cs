@@ -647,7 +647,7 @@ function Player::heatLockOnLoop(%pl, %img, %slot, %time, %angle, %minRange, %ran
 				if(%col.getType() & $TypeMasks::PlayerObjectType)
 					%pos = %col.getHackPosition();
 				
-				%ray = containerRayCast(%eye, %pos, $TypeMasks::FxBrickObjectType | $TypeMasks::StaticObjectType, %pl, %col);
+				%ray = containerRayCast(%eye, %pos, $TypeMasks::FxBrickObjectType | $trapStaticTypemask, %pl, %col);
 
 				if(isObject(%ray))
 					continue;
@@ -681,7 +681,7 @@ function Player::heatLockOnLoop(%pl, %img, %slot, %time, %angle, %minRange, %ran
 			
 			%ang = mRadToDeg(mAcos(vectorDot(%vec, vectorNormalize(vectorSub(%pos, %pl.getHackPosition())))));
 
-			%ray = containerRayCast(%eye, %pos, $TypeMasks::FxBrickObjectType | $TypeMasks::InteriorObjectType | $TypeMasks::StaticObjectType, %pl, %col);
+			%ray = containerRayCast(%eye, %pos, $TypeMasks::FxBrickObjectType | $TypeMasks::InteriorObjectType | $trapStaticTypemask, %pl, %col);
 			if(!isObject(%ray) && %ang <= %angle && (%minRange <= 0 || vectorDist(%pl.getHackPosition(), %pos) > %minRange) && (!(%col.getType() & $TypeMasks::PlayerObjectType) || %col.getDataBlock().isTurretArmor || %col.isHSJetting(%jetTime)))
 			{
 				if(getSimTime() - %pl.heatTargetTime < %time && %time > 0)

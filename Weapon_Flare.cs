@@ -192,7 +192,7 @@ function TW_FlareProjectile::PrjLoop_onTick(%this, %obj)
 	
 	if(!isObject(%obj.flareTarget))
 	{
-		%mask = $TypeMasks::fxBrickObjectType | $TypeMasks::StaticObjectType | $TypeMasks::StaticShapeObjectType | $TypeMasks::VehicleObjectType | $TypeMasks::TerrainObjectType | $TypeMasks::InteriorObjectType;
+		%mask = $TypeMasks::fxBrickObjectType | $trapStaticTypemask | $TypeMasks::StaticShapeObjectType | $TypeMasks::VehicleObjectType | $TypeMasks::TerrainObjectType | $TypeMasks::InteriorObjectType;
 
 		initContainerRadiusSearch(%pos, %this.flareRadius, $TypeMasks::ProjectileObjectType);
 		while(isObject(%col = containerSearchNext()))

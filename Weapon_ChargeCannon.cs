@@ -159,9 +159,9 @@ function TW_ELFGunImage::onFire(%this,%obj,%slot)
 					if(mRadToDeg(mAcos(vectorDot(vectorNormalize(vectorSub(%col.getCenterPos(), %pos)), %obj.getLookVector()))) > %this.elfAngle)
 						continue;
 					
-					if(isObject(containerRayCast(%pos, %col.getCenterPos(), $TypeMasks::StaticObjectType | $TypeMasks::InteriorObjectType | $TypeMasks::TerrainObjectType | $TypeMasks::FxBrickObjectType)))
+					if(isObject(containerRayCast(%pos, %col.getCenterPos(), $trapStaticTypemask | $TypeMasks::InteriorObjectType | $TypeMasks::TerrainObjectType | $TypeMasks::FxBrickObjectType)))
 						continue;
-					
+
 					%targ = %col;
 					%targdb = %coldb;
 					%dist = vectorDist(%pos, %col.getCenterPos());

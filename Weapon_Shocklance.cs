@@ -283,7 +283,7 @@ function TW_ShocklanceImage::onFire(%this,%obj,%slot)
 		        $TypeMasks::PlayerObjectType  |
 						$TypeMasks::VehicleObjectType |
 						$TypeMasks::InteriorObjectType|
-						$TypeMasks::StaticObjectType  |
+						$trapStaticTypemask           |
 						$TypeMasks::TerrainObjectType ;
 
 		%pos = %obj.getMuzzlePoint(%slot);

@@ -105,7 +105,7 @@ datablock ProjectileData(TW_MIRVLauncherProjectile)
 function TW_MIRVLauncherProjectile::onExplode(%db, %proj, %pos)
 {
 	%vec = %proj.getForwardVector();
-	%ray = containerRayCast(vectorAdd(%pos, "0 0 0.1"), vectorAdd(%pos, "0 0 -3"), $TypeMasks::FxBrickObjectType | $TypeMasks::InteriorObjectType | $TypeMasks::StaticObjectType);
+	%ray = containerRayCast(vectorAdd(%pos, "0 0 0.1"), vectorAdd(%pos, "0 0 -3"), $TypeMasks::FxBrickObjectType | $TypeMasks::InteriorObjectType | $trapStaticTypemask);
 	
 	if(!isObject(%ray))
 	{
@@ -134,7 +134,7 @@ function TW_MIRVLauncherProjectile::PrjLoop_onTick(%db, %obj)
 		if(%col.getType() & $TypeMasks::PlayerObjectType)
 			%pos = %col.getHackPosition();
 		
-		%ray = containerRayCast(%obj.getPosition(), %pos, $TypeMasks::FxBrickObjectType | $TypeMasks::InteriorObjectType | $TypeMasks::StaticObjectType, %obj, %col);
+		%ray = containerRayCast(%obj.getPosition(), %pos, $TypeMasks::FxBrickObjectType | $TypeMasks::InteriorObjectType | $trapStaticTypemask, %obj, %col);
 		
 		if(!isObject(%ray) && %col.getDamagePercent() < 1.0 && minigameCanDamage(%obj, %col) == 1 && !minigameIsFriendly(%obj, %col))
 		{
