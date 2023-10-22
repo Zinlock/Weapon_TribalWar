@@ -117,7 +117,7 @@ datablock ParticleData(TW_LauncherExplosionPlasmaParticle)
 	useInvAlpha		= false;
 	animateTexture		= false;
 
-	textureName		= "base/data/particles/smoke";
+	textureName		= "base/data/particles/cloud";
 
 	colors[0]     = "0 1 0 0.1";
 	colors[1]     = "0.2 0.9 0.0 0.3";
