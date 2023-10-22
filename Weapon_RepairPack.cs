@@ -79,9 +79,9 @@ datablock ShapeBaseImageData(TW_RepairGunImage)
 	repairAngle = 45;
 
 	minEnergy = 5.0;
-	energyUse = 1.5;
-	repairAmt = 0.75;
-	repairAmtUtil = 2;
+	energyUse = 1.0;
+	repairAmt = 0.5;
+	repairAmtUtil = 1.5;
 
 	stateName[0]                     	= "Activate";
 	stateTimeoutValue[0]             	= 0.1;
@@ -109,7 +109,13 @@ datablock ShapeBaseImageData(TW_RepairGunImage)
 
 function TW_RepairGunImage::onFire(%this,%obj,%slot)
 {
-	if(%obj.getEnergyLevel() > %this.minEnergy && %obj.getDamagePercent() < 1.0)
+	if(%obj.getDamagePercent() >= 1.0)
+		return;
+
+	if(%obj.lastRepairTime $= "")
+		%obj.lastRepairTime = getSimTime() - 32;
+
+	if(%obj.getEnergyLevel() > %this.minEnergy)
 	{
 		%pos = %obj.getMuzzlePoint(%slot);
 
@@ -236,6 +242,14 @@ function TW_RepairGunImage::onFire(%this,%obj,%slot)
 			}
 		}
 	}
+	else
+	{
+		%time = getSimTime() - %obj.lastRepairTime;
+		%obj.setEnergyLevel(%obj.getEnergyLevel() - %obj.getRechargeRate() * (%time / 32));
+		%obj.client.centerPrint("<color:DF9D32><font:impact:24>---- NO ENERGY ----", 1);
+	}
+
+	%obj.lastRepairTime = getSimTime();
 }
 
 function TW_RepairGunImage::onMount(%this,%obj,%slot)

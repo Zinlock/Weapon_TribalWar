@@ -77,8 +77,8 @@ datablock ShapeBaseImageData(TW_ELFGunImage)
 
 	elfRange = 20;
 	elfAngle = 30;
-	elfDrain = 3.0;
-	elfDamage = 1.0;
+	elfDrain = 4.0;
+	elfDamage = 0.5;
 
 	stateName[0]                     	= "Activate";
 	stateTimeoutValue[0]             	= 0.1;
