@@ -17,11 +17,6 @@ function TW_ShortAEProjectile::onCollision(%this, %obj, %col, %fade, %pos, %norm
 	AETrailedProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity);
 }
 
-function TW_ShortAEProjectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %velocity)
-{
-	AETrailedProjectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %velocity);
-}
-
 function TW_ShortAEProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
 {
 	AETrailedProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal);
@@ -37,11 +32,6 @@ datablock ProjectileData(TW_LongAEProjectile : AETrailedProjectile)
 function TW_LongAEProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity)
 {
 	AETrailedProjectile::onCollision(%this, %obj, %col, %fade, %pos, %normal, %velocity);
-}
-
-function TW_LongAEProjectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %velocity)
-{
-	AETrailedProjectile::onExplode(%this, %obj, %col, %fade, %pos, %normal, %velocity);
 }
 
 function TW_LongAEProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
@@ -135,10 +125,6 @@ datablock ShapeBaseImageData(TW_DoubleShotgunImage)
 
 	projectileRDismemberBody = 1;
 	projectileRDismemberHead = 1;
-
-	projectileFalloffStart = 16;
-	projectileFalloffEnd = 16;
-	projectileFalloffDamage = 1;
 
 	concBlastProj = ShotgunBlastProjectile;
 	concBlastDamage = 10;
