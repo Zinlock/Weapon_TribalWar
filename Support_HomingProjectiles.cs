@@ -241,15 +241,15 @@ function minigameIsFriendly(%src, %col)
 	{
 		if(%col.getType() & $TypeMasks::VehicleObjectType)
 		{
-			if(isObject(%col.spawnBrick))
-				return %src.slyrTeam.isAlliedTeam(%mg.teams.getTeamFromName(%col.spawnBrick.getControllingTeam()));
+			if(isObject(%col.spawnBrick) && isObject(%srcTeam = %src.slyrTeam) && isObject(%colTeam = %mg.teams.getTeamFromName(%col.spawnBrick.getControllingTeam())))
+				return %srcTeam.isAlliedTeam(%colTeam);
 			else
 				return 0;
 		}
 		else
 		{
-			if(isObject(%col.client))
-				return %src.slyrTeam.isAlliedTeam(%col.client.slyrTeam);
+			if(isObject(%col.client) && isObject(%srcTeam = %src.slyrTeam) && isObject(%colTeam = %col.client.slyrTeam))
+				return %srcTeam.isAlliedTeam(%colTeam);
 			else
 				return (miniGameCanDamage(%src, %col) != 1);
 		}
