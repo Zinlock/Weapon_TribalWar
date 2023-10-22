@@ -539,17 +539,6 @@ function HeatLockOnPrint(%obj, %col, %valA, %valB)
 
 	if(isObject(%col.client))
 	{
-		if(isObject(%mount = %col.getObjectMount()))
-		{
-			%db = %mount.getDatablock();
-			for(%i = 0; %i < %db.numMountPoints; %i++)
-			{
-				%targ = %mount.getMountedObject(%i);
-				if(isObject(%targ) && %targ != %col)
-					HeatLockOnPrint(-1, %targ, 0, %valB);
-			}
-		}
-
 		if(%valB)
 			%col.lastLockedTime = getSimTime();
 
