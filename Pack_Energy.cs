@@ -28,23 +28,32 @@ datablock ItemData(TW_EnergyPackItem)
 	hardImpactSound = "AEWepImpactHard1Sound AEWepImpactHard2Sound AEWepImpactHard3Sound";
 
 	title = "Energy Pack";
-	description = "Periodically recharges energy";
+	description = "Periodically recharges your energy";
+	// description = "Increases your energy recharge rate by 30%";
 
 	isPackItem = true;
 
-	packCallback = "twEPTick";
-
-	energyRegen = 5;
+	energyRegen = 6;
 	energyDelay = 1000;
+	// energyMult = 1.3;
 };
 
-function twEPTick(%itm, %pl)
+function TW_EnergyPackItem::onPackTick(%db, %pl)
 {
-	if(getSimTime() - %pl.lastEnergyTick > %itm.energyDelay)
+	if(getSimTime() - %pl.lastEnergyTick > %db.energyDelay)
 	{
 		%pl.lastEnergyTick = getSimTime();
-		%pl.setEnergyLevel(%pl.getEnergyLevel() + %itm.energyRegen);
+		%pl.setEnergyLevel(%pl.getEnergyLevel() + %db.energyRegen);
 	}
+
+	// %rate = %pl.getDatablock().rechargeRate;
+	// if(%pl.getRechargeRate() != %rate * %db.energyMult)
+	// 	%pl.setRechargeRate(%rate * %db.energyMult);
+}
+
+function TW_EnergyPackItem::onPackLost(%db, %pl)
+{
+	// %pl.setRechargeRate(%pl.getDatablock().rechargeRate);
 }
 
 datablock ShapeBaseImageData(TW_EnergyPackImage)
