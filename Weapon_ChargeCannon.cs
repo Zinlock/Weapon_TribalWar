@@ -137,7 +137,7 @@ function TW_ELFGunImage::onFire(%this,%obj,%slot)
 				{
 					%coldb = %col.getDataBlock();
 
-					if(%col == %obj)
+					if(%col == %obj || %col == %obj.turretBase)
 						continue;
 					
 					if(%col.getDamagePercent() >= 1.0)
