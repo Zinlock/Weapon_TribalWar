@@ -109,9 +109,9 @@ function Projectile::homeLoop(%obj)
 		%found.lockOnSet = new SimSet();
 		MissionCleanup.add(%found.lockOnSet);
 	}
-	
+
 	if(%found.getType() & $TypeMasks::PlayerObjectType)
-		%end = %found.getHackPosition();
+		%end = %found.getCenterPos();
 	else
 		%end = %found.getWorldBoxCenter();
 	

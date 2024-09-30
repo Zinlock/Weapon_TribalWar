@@ -624,6 +624,9 @@ function Player::heatLockOnLoop(%pl, %img, %slot, %time, %angle, %minRange, %ran
 
 				%pos = %col.getWorldBoxCenter();
 
+				if(%col.getType() & $TypeMasks::PlayerObjectType)
+					%pos = %col.getCenterPos();
+
 				if(%minRange > 0 && vectorDist(%pl.getHackPosition(), %pos) < %minRange)
 					continue;
 				
@@ -632,9 +635,6 @@ function Player::heatLockOnLoop(%pl, %img, %slot, %time, %angle, %minRange, %ran
 
 				// if(isObject(%col.lockOnSet) && %col.lockOnSet.getCount() >= %maxLockOn && %maxLockOn > 0)
 				// 	continue;
-
-				if(%col.getType() & $TypeMasks::PlayerObjectType)
-					%pos = %col.getHackPosition();
 				
 				%ray = containerRayCast(%eye, %pos, $TypeMasks::FxBrickObjectType | $trapStaticTypemask, %pl, %col);
 
@@ -666,7 +666,7 @@ function Player::heatLockOnLoop(%pl, %img, %slot, %time, %angle, %minRange, %ran
 			%pos = %col.getWorldBoxCenter();
 
 			if(%col.getType() & $TypeMasks::PlayerObjectType)
-				%pos = %col.getHackPosition();
+				%pos = %col.getCenterPos();
 			
 			%ang = mRadToDeg(mAcos(vectorDot(%vec, vectorNormalize(vectorSub(%pos, %pl.getHackPosition())))));
 
