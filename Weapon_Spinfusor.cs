@@ -54,8 +54,8 @@ datablock ExplosionData(TW_SpinfusorExplosion)
 	lightStartColor = "0 0.5 1 1";
 	lightEndColor = "0 0 0 0";
 
-	damageRadius = 12;
-	radiusDamage = 50;
+	damageRadius = 14;
+	radiusDamage = 60;
 
 	impulseRadius = 10;
 	impulseForce = 1500;
@@ -192,7 +192,7 @@ datablock ShapeBaseImageData(TW_SpinfusorImage)
 	screenshakeMin = "0.3 0.3 0.3"; 
 	screenshakeMax = "1 1 1";
 
-	projectileDamage = 45;
+	projectileDamage = 35;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.0;
 	projectileVelocity = 100;

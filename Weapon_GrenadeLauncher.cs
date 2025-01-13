@@ -33,8 +33,8 @@ datablock ExplosionData(TW_GrenadeLauncherExplosion)
 	lightStartColor = "1 0.5 0 1";
 	lightEndColor = "0 0 0 0";
 
-	damageRadius = 13;
-	radiusDamage = 30;
+	damageRadius = 16;
+	radiusDamage = 50;
 
 	impulseRadius = 14;
 	impulseForce = 1500;

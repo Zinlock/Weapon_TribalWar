@@ -106,7 +106,7 @@ datablock ShapeBaseImageData(TW_ChaingunImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 6;
+	projectileDamage = 8;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.2;
 	projectileVelocity = 200;

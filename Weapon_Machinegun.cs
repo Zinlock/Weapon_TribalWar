@@ -84,7 +84,7 @@ datablock ShapeBaseImageData(TW_MachinegunImage)
 	muzzleFlashScale = "1 1 1";
 	bulletScale = "1 1 1";
 
-	projectileDamage = 10;
+	projectileDamage = 13;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.2;
 	projectileVelocity = 200;

@@ -81,7 +81,7 @@ datablock ShapeBaseImageData(TW_RepairGunImage)
 	minEnergy = 5.0;
 	energyUse = 1.0;
 	repairAmt = 0.5;
-	repairAmtUtil = 1.5;
+	repairAmtUtil = 1.0;
 
 	stateName[0]                     	= "Activate";
 	stateTimeoutValue[0]             	= 0.1;

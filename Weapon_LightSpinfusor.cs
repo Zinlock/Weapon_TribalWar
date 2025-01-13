@@ -55,7 +55,7 @@ datablock ExplosionData(TW_LightSpinfusorExplosion)
 	lightEndColor = "0 0 0 0";
 
 	damageRadius = 12;
-	radiusDamage = 30;
+	radiusDamage = 35;
 
 	impulseRadius = 10;
 	impulseForce = 1500;

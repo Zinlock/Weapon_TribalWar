@@ -54,8 +54,8 @@ datablock ExplosionData(TW_PlasmaRifleExplosion)
 	lightStartColor = "0 1 0 1";
 	lightEndColor = "0 0 0 0";
 
-	damageRadius = 4.5;
-	radiusDamage = 20;
+	damageRadius = 7;
+	radiusDamage = 30;
 
 	impulseRadius = 6;
 	impulseForce = 500;
@@ -192,7 +192,7 @@ datablock ShapeBaseImageData(TW_PlasmaRifleImage)
 	screenshakeMin = "0.3 0.3 0.3"; 
 	screenshakeMax = "1 1 1";
 
-	projectileDamage = 25;
+	projectileDamage = 18;
 	projectileCount = 1;
 	projectileHeadshotMult = 1.0;
 	projectileVelocity = 100;

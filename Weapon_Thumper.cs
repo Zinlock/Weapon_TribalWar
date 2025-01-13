@@ -54,7 +54,7 @@ datablock ExplosionData(TW_ThumperExplosion)
 	lightStartColor = "1 0.5 0 1";
 	lightEndColor = "0 0 0 0";
 
-	damageRadius = 10;
+	damageRadius = 16;
 	radiusDamage = 60;
 
 	impulseRadius = 14;

@@ -47,8 +47,8 @@ datablock ExplosionData(TW_BurstProxyExplosion)
 	lightStartColor = "1 0.5 0 1";
 	lightEndColor = "0 0 0 0";
 
-	damageRadius = 8;
-	radiusDamage = 30;
+	damageRadius = 10;
+	radiusDamage = 40;
  
 	impulseRadius = 10;
 	impulseForce = 600;
@@ -122,7 +122,7 @@ function TW_BurstProxyProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal
 
 function TW_BurstProxyProjectile::PrjLoop_onTick(%this, %obj)
 {
-	initContainerRadiusSearch(%obj.getPosition(), %this.triggerRadius, $TypeMasks::PlayerObjectType | $TypeMasks::VehicleObjectType);
+	initContainerRadiusSearch(%obj.getPosition(), %this.triggerRadius, $TypeMasks::VehicleObjectType);
 	while(isObject(%col = containerSearchNext()))
 	{
 		if(%col.getDamagePercent() < 1.0 && minigameCanDamage(%obj, %col) == 1 && !minigameIsFriendly(%obj, %col) && %col != %obj.sourceObject &&

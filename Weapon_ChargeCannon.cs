@@ -142,16 +142,16 @@ function TW_ELFGunImage::onFire(%this,%obj,%slot)
 					
 					if(%col.getDamagePercent() >= 1.0)
 						continue;
-					
-					if(%coldb.isTurretArmor)
-					{
-						if(isObject(%col.turretHead) && !%col.turretHead.isPowered || isObject(%col.turretBase) && %col.turretBase.isDisabled ||
-							!isObject(%col.turretHead) && !%col.isPowered || !isObject(%col.turretBase) && %col.isDisabled)
-							continue;
 
-						if(!%coldb.energyShield)
-							continue;
-					}
+					// if(%coldb.isTurretArmor)
+					// {
+					// 	if(isObject(%col.turretHead) && !%col.turretHead.isPowered || isObject(%col.turretBase) && %col.turretBase.isDisabled ||
+					// 		!isObject(%col.turretHead) && !%col.isPowered || !isObject(%col.turretBase) && %col.isDisabled)
+					// 		continue;
+
+					// 	if(!%coldb.energyShield)
+					// 		continue;
+					// }
 					
 					if(vectorDist(%pos, %col.getCenterPos()) > %dist)
 						continue;
@@ -223,7 +223,9 @@ function TW_ELFGunImage::onFire(%this,%obj,%slot)
 
 			%targ.setEnergyLevel(%targ.getEnergyLevel() - %this.elfDrain);
 
-			if(%targ.getEnergyLevel() <= 10)
+			if(%targdb.isTurretArmor)
+				%targ.turretJam(1000);
+			else if(%targ.getEnergyLevel() <= 10)
 				%targ.damage(%obj, %targ.getCenterPos(), %this.elfDamage, $DamageType::Direct);
 			
 			if(isObject(%obj.client))
